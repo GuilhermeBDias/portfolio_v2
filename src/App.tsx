@@ -1,14 +1,18 @@
-function App() {
+import { NavBar } from "./components/layout/navbar";
 
+function App() {
   return (
     <>
       <section id="center">
-        <div>hello World123</div>
+        <NavBar />
+        {/* Hero */}
+        {/* About */}
+        {/* Experience */}
+        {/* Projects */}
+        {/* Contact */}
       </section>
-
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;

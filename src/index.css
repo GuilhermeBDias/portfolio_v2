@@ -1,1 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:wght@300;500;700&family=Lato:wght@300;400;700&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:wght@300;500;700&family=Lato:wght@400;700&family=Manrope:wght@200..800&family=Space+Grotesk:wght@300..700&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Manrope", sans-serif;
+}
+
+body {
+  @apply bg-[#0b0b0b] text-white;
+}
+
+/* Colors */
+.primary-color {
+  @apply bg-[#bc13fe];
+}
+.primary-text-color {
+  @apply text-[#bc13fe];
+}
+
+.secondary-color {
+  @apply bg-[#2E004F];
+}
+.secondary-text-color {
+  @apply text-[#2E004F];
+}
+
+.tertiary-color {
+  @apply bg-[#00f0ff];
+}
+.tertiary-text-color {
+  @apply text-[#00f0ff];
+}
+/*  */
