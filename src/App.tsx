@@ -3,8 +3,8 @@ import { NavBar } from "./components/layout/navbar";
 function App() {
   return (
     <>
-      <section id="center">
-        <NavBar />
+      <NavBar />
+      <section>
         {/* Hero */}
         {/* About */}
         {/* Experience */}
