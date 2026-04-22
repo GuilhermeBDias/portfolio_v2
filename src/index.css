@@ -6,6 +6,11 @@
   --font-primary: "Space+Grotesk", sans-serif;
   --font-secondary: "Manrope", sans-serif;
 }
+::-webkit-scrollbar {
+  width: 0px;
+  color: #ffffff;
+  background-color: #ffffff;
+}
 
 body {
   @apply bg-[#1c1b1b] text-white font-primary;
@@ -34,7 +39,7 @@ html {
   @apply bg-[#5C347D];
 }
 .secondary-text-color {
-  @apply text-[#5C347D] font-secondary;
+  @apply text-[#5C347D] ;
 }
 
 .tertiary-color {

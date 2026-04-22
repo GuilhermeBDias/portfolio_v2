@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigation_links } from "../../constants/navigation_links";
 import { MdTerminal, MdMenu, MdClose } from "react-icons/md";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 
 export const NavBar = () => {
   const [active, setActive] = useState<string>("Overview");
+  const isScrollingByClick = useRef(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (name: string) => {
-    setActive(name);
-
-    const section = document.getElementById(name.toLowerCase());
+  const handleClick = (id: string) => {
+    const section = document.getElementById(id);
 
     if (section) {
       section.scrollIntoView();
@@ -54,37 +53,41 @@ export const NavBar = () => {
   useEffect(() => {
     const sections = document.querySelectorAll("section");
 
-    const handleScroll = () => {
-      let current = "Overview";
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
+        if (visible) {
+          const currentLink = navigation_links.find(
+            (link) => link.id === visible.target.id,
+          );
 
-        if (window.scrollY >= sectionTop) {
-          current = section.id;
+          if (currentLink) {
+            setActive(currentLink.name);
+          }
         }
-      });
+      },
+      { threshold: 0.6 },
+    );
+    sections.forEach((section) => observer.observe(section));
 
-      setActive(current.charAt(0).toUpperCase() + current.slice(1));
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <nav className="w-full fixed top-0 left-0 md:w-[15%] md:h-full bg-[#0b0b0b] backdrop-blur-md border-b md:border-none border-[#bc13fe]/50 z-20">
+    <nav className="w-full fixed top-0 left-0 md:w-[15%] md:h-full bg-[#0b0b0b] backdrop-blur-md  md:border-none border-[#bc13fe]/50 z-20">
       {/* side bar desktop / top bar mobile*/}
       <div className="flex md:flex-col justify-between items-start p-4 md:py-4 md:px-0 h-full">
         <div
           className="flex justify-center items-center gap-2 cursor-pointer primary-text-color md:mt-4"
-          onClick={() => handleClick("Overview")}
+          onClick={() => handleClick("overview")}
         >
-          <MdTerminal size={32} className="hidden md:flex ml-4 " />
+          <MdTerminal size={38} className="hidden md:flex ml-4 " />
           <MdTerminal size={28} className="md:hidden" />
 
-          <h1 className="text-2xl md:text-3xl font-bold ">Dias.sys</h1>
+          <h1 className="text-2xl md:text-4xl font-bold ">Dias.sys</h1>
         </div>
 
         {/* Desktop Menu */}
@@ -93,18 +96,20 @@ export const NavBar = () => {
             const Icon = link.icon;
             return (
               <li key={link.name} className="w-full relative">
-                <button
-                  onClick={() => handleClick(link.name)}
-                  className={`text-xl  cursor-pointer p-4 flex items-center gap-4 w-full hover:bg-white/10 transition-colors transition-300 ${active === link.name ? "primary-text-color bg-white/10" : "secondary-text-color"}`}
+                <motion.button
+                  layout
+                  onClick={() => handleClick(link.id)}
+                  className={`text-xl  cursor-pointer px-6 py-4 flex items-center gap-4 w-full hover:bg-white/10 transition-colors ${active === link.name ? "primary-text-color bg-white/10" : "secondary-text-color"}`}
                 >
                   {/* Indicador animado */}
                   {active === link.name && (
                     <motion.div
                       layoutId="active-indicator"
+                      layout
                       transition={{
                         type: "spring",
                         stiffness: 300,
-                        damping: 30,
+                        damping: 50,
                       }}
                       className="absolute left-0 top-0 h-full w-0.75 primary-color shadow-[0_0_10px_#bc13fe]"
                     />
@@ -112,7 +117,7 @@ export const NavBar = () => {
 
                   {Icon && <Icon size={26} />}
                   <span>{link.name}</span>
-                </button>
+                </motion.button>
               </li>
             );
           })}
@@ -149,12 +154,12 @@ export const NavBar = () => {
                   <motion.li
                     key={link.name}
                     variants={item}
-                    className={`text-lg  font-secondary border-b-2 py-2 my-2 flex justify-between items-center ${active === link.name ? "primary-text-color" : "secondary-text-color"}`}
+                    className={`text-lg  font-secondary border-b-2 py-2 my-2 flex justify-between items-center hover:bg-white/10 transition-colors ${active === link.name ? "primary-text-color" : "secondary-text-color"}`}
                   >
                     <button
                       className="flex gap-2 justify-start items-center w-full "
                       onClick={() => {
-                        handleClick(link.name);
+                        handleClick(link.id);
                         setIsOpen(false);
                       }}
                     >
