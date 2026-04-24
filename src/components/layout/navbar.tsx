@@ -5,7 +5,6 @@ import { AnimatePresence, motion, type Variants } from "motion/react";
 
 export const NavBar = () => {
   const [active, setActive] = useState<string>("Overview");
-  const isScrollingByClick = useRef(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
