@@ -23,8 +23,8 @@ export const Overview = () => {
         />
         <div className="hidden md:absolute md:flex right-0 top-20 w-[30%] h-[70%] blur-3xl bg-radial-[at_100%_50%] from-[#bc13fe]/20 to-[#0b0b0b]" />
 
-        <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start pl-10 z-10">
-          <div className="flex flex-col gap-4">
+        <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start  md:pl-10 z-10">
+          <div className="flex flex-col gap-4 px-8">
             <div className="flex relative items-center gap-2 tertiary-text-color pl-2 text-xs md:text-lg font-serif font-light tracking-[0.15rem] ">
               <span className=" bg-[#00f0ff]/80 w-10 md:w-12 h-0.5 bottom-2 " />
               <span>PROTOCOL: INITIATE PORTIFOLIO</span>
@@ -60,7 +60,7 @@ export const Overview = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col gap-6 w-[90%] md:w-[40%] h-full text-sm md:text-xl bg-[#1c1b1b] border-l-2 border-[#00f0ff] p-8 mt-8">
+              <div className="flex flex-col gap-6 w-full md:w-[40%] h-full text-sm md:text-xl bg-[#1c1b1b] border-l-2 border-[#00f0ff] p-8 mt-8">
                 <span className="tertiary-text-color text-base font-normal tracking-[0.3rem]">
                   SYSTEM METADATA
                 </span>
@@ -89,12 +89,15 @@ export const Overview = () => {
         </div>
       </section>
       {/*Second part of the section Overview */}
-      <section className="flex w-full min-h-screen items-center bg-[#171616]">
-        <div className="md:absolute right-0 flex flex-col items-start px-10 w-full md:w-[85%]">
+      <section className="flex w-full min-h-screen items-start pt-20 bg-[#171616]">
+      {/* mobile version */}
+        <div className="md:absolute right-0 flex flex-col items-start px-10 w-full md:w-[85%] gap-4">
           <div className="flex gap-4 items-center">
             <div className="tertiary-color w-3 h-3" />
             <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">IDENTITY_MODULE</h3>
           </div>
+          <p className="text-color text-base">Architecture over aesthetics. Logic over luck. I build monolithic digital structures designed to withstand the entropy of the modern web</p>
+          <p className="text-color"> My approach merges the brutalist aesthetics of modern architecture with the high-performance demands of low-level engineering. Clean code ins't a goal; it's the fundamental baseline for everything I deploy</p>
         </div>
       </section>
     </>
