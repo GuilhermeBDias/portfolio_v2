@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { navigation_links } from "../../constants/navigation_links";
 import { MdTerminal, MdMenu, MdClose } from "react-icons/md";
 import { AnimatePresence, motion, type Variants } from "motion/react";
