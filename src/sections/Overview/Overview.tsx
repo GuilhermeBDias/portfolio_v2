@@ -1,3 +1,6 @@
+import { BsFillLightningChargeFill } from "react-icons/bs";
+import { FaBuffer, FaShieldAlt } from "react-icons/fa";
+
 export const Overview = () => {
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
@@ -11,7 +14,7 @@ export const Overview = () => {
       {/* First part of the section Overview */}
       <section
         id="overview"
-        className="relative flex w-full min-h-screen items-center  py-24 md:py-0"
+        className="relative flex w-full min-h-screen items-center py-24 md:py-0"
       >
         {/* gradient color no topo mobile */}
         <div className="md:hidden absolute top-0 right-0 w-[60%] h-[50%] blur-2xl bg-radial-[at_110%_0%] from-[#bc13fe]/30 to-[#0b0b0b] z-0" />
@@ -89,15 +92,91 @@ export const Overview = () => {
         </div>
       </section>
       {/*Second part of the section Overview */}
-      <section className="flex w-full min-h-screen items-start pt-20 bg-[#171616]">
-      {/* mobile version */}
-        <div className="md:absolute right-0 flex flex-col items-start px-10 w-full md:w-[85%] gap-4">
+      <section className="flex w-full min-h-screen items-center bg-[#131212]">
+        {/* mobile version */}
+        <div className="md:hidden flex flex-col items-start px-10 w-full md:w-[85%] gap-8">
           <div className="flex gap-4 items-center">
             <div className="tertiary-color w-3 h-3" />
-            <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">IDENTITY_MODULE</h3>
+            <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">
+              IDENTITY_MODULE
+            </h3>
           </div>
-          <p className="text-color text-base">Architecture over aesthetics. Logic over luck. I build monolithic digital structures designed to withstand the entropy of the modern web</p>
-          <p className="text-color"> My approach merges the brutalist aesthetics of modern architecture with the high-performance demands of low-level engineering. Clean code ins't a goal; it's the fundamental baseline for everything I deploy</p>
+          <p className="text-color text-xl text-justify">
+            Structural logic prioritized over visual noise. Systems engineered
+            for resilience, scalability, and long-term stability within the
+            modern web environment.
+          </p>
+          <p className="text-color-2 text-justify">
+            {" "}
+            Design language influenced by brutalist architecture and low-level
+            engineering principles. Clean code is not an objective — it is the
+            default state of every deployed system.
+          </p>
+          <div className="flex flex-col gap-2 w-full text-color-2">
+            <div className="bg-gray-500/10 p-4 text-sm flex justify-between items-center">
+              PERFORMANCE OPTIMIZATION{" "}
+              <BsFillLightningChargeFill
+                className="primary-text-color"
+                size={22}
+              />
+            </div>
+            <div className="bg-gray-500/10 p-4 text-sm flex justify-between items-center">
+              SCALABLE ARCHITECTURE{" "}
+              <FaBuffer className="primary-text-color" size={22} />
+            </div>
+            <div className="bg-gray-500/10 p-4 text-sm flex justify-between items-center">
+              SYSTEM SECURITY{" "}
+              <FaShieldAlt className="primary-text-color" size={22} />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop version */}
+        <div className="hidden md:flex absolute right-0 w-[85%] px-20 h-[80%] ">
+          {/* left side */}
+          <div className="w-[40%] h-[90%] flex flex-col justify-center ">
+            <span className="text-[14rem] absolute -top-2 left-18 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold">
+              02+
+            </span>
+            <div className="w-full flex flex-col border-l-6 border-[#bc13fe] px-8 py-4 gap-4 z-10 ">
+              <h1 className="text-8xl max-w-54 text-white/90 font-semibold">
+                Years Active
+              </h1>
+              <p className="text-color text-2xl max-w-90">
+                CONTINUOUS DEPLOYMENT SINCE 2024
+              </p>
+            </div>
+          </div>
+          {/* right side */}
+          <div className="w-[60%] h-full flex flex-col gap-10 justify-center p-5">
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <div className="tertiary-color w-3 h-3" />
+                <h3 className="tertiary-text-color text-lg md:text-xl tracking-[0.3rem] font-light">
+                  IDENTITY_MODULE
+                </h3>
+              </div>
+              <div className="flex flex-col w-[75%]">
+                <h2 className="text-7xl text-white/90 font-bold">
+                  I BUILD SOFTWARE AS IF IT WERE A{" "}
+                  <span className="text-color-2">MONUMENT</span>.
+                </h2>
+              </div>
+            </div>
+            <div className="flex flex-col w-[80%] gap-8 ">
+              <p className="text-[#eccff7]/70 text-2xl text-justify">
+                Structural logic prioritized over visual noise. Systems
+                engineered for resilience, scalability, and long-term stability
+                within the modern web environment.
+              </p>
+              <p className="text-color text-xl border-l text-justify pl-6">
+                {" "}
+                Design language influenced by brutalist architecture and
+                low-level engineering principles. Clean code is not an objective
+                — it is the default state of every deployed system.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </>
