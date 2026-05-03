@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { navigation_links } from "../../constants/navigation_links";
 import { MdTerminal, MdMenu, MdClose } from "react-icons/md";
-import { AnimatePresence, motion, type Variants } from "motion/react";
+import {
+  AnimatePresence,
+  easeInOut,
+  motion,
+  stagger,
+  type Variants,
+} from "motion/react";
 
-export const NavBar = () => {
+type NavBarProps = {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+};
+
+export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
   const [active, setActive] = useState<string>("Overview");
 
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
@@ -22,13 +32,21 @@ export const NavBar = () => {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.08,
+        delay: 0.1,
+        duration: 0.1,
+        easeInOut,
+        delayChildren: stagger(0.2, { from: "first" }),
       },
     },
     exit: {
       opacity: 0,
-      y: -20,
-      transition: { duration: 0.2 },
+      y: -10,
+      transition: {
+        delay: 0.5,
+        duration: 0.1,
+        easeInOut,
+        delayChildren: stagger(0.2, { from: "last" }),
+      },
     },
   };
 
@@ -41,6 +59,14 @@ export const NavBar = () => {
         type: "spring",
         stiffness: 300,
         damping: 24,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      transition: {
+        duration: 0.2,
+        ease: "easeIn",
       },
     },
   };
@@ -76,7 +102,7 @@ export const NavBar = () => {
   }, []);
 
   return (
-    <nav className="w-full fixed top-0 left-0 md:w-[15%] md:h-full bg-[#0b0b0b] backdrop-blur-md  md:border-none border-[#bc13fe]/50 z-20">
+    <nav className="w-full fixed top-0 left-0 bg-[#0b0b0b]/80 md:w-[15%] md:h-full  md:bg-[#0b0b0b] backdrop-blur-md  md:border-none border-[#bc13fe]/50 z-20">
       {/* side bar desktop / top bar mobile*/}
       <div className="flex md:flex-col justify-between items-start p-4 md:py-4 md:px-0 h-full">
         <div
@@ -145,7 +171,7 @@ export const NavBar = () => {
               initial="hidden"
               animate="show"
               exit="exit"
-              className="px-4 pb-4"
+              className="px-4 pb-4 z-40"
             >
               {navigation_links.map((link) => {
                 const Icon = link.icon;
