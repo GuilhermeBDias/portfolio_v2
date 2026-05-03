@@ -56,4 +56,8 @@ html {
 .text-color-2 {
   @apply text-[#e6bcf5]
 }
+
+.second-background {
+  @apply bg-[#131212];
+}
 /*  */

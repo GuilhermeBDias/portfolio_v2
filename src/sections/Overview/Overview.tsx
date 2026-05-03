@@ -63,7 +63,7 @@ export const Overview = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col gap-6 w-full md:w-[40%] h-full text-sm md:text-xl bg-[#1c1b1b] border-l-2 border-[#00f0ff] p-8 mt-8">
+              <div className="flex flex-col gap-6 w-full md:w-[40%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8">
                 <span className="tertiary-text-color text-base font-normal tracking-[0.3rem]">
                   SYSTEM METADATA
                 </span>
@@ -75,12 +75,18 @@ export const Overview = () => {
                       15.7801° S | 47.9292° W
                     </p>
                   </div>
-                  <div>
-                    <span className="text-base font-light">Core_Engine</span>
-                    <p className="text-color-2 text-lg md:text-xl">STABLE</p>
+                  <div className="flex md:flex-col gap-8">
+                    <div>
+                      <span className="text-base font-light">Core_Engine</span>
+                      <p className="text-color-2 text-lg md:text-xl">STABLE</p>
+                    </div>
+                    <div className="md:hidden flex-flex-col">
+                      <span className="text-base font-light">Years Active</span>
+                      <p className="text-color-2 text-lg md:text-xl">02+</p>
+                    </div>
                   </div>
                 </div>
-                <div>
+                <div className="md:w-[50%]">
                   <span className="text-base font-light">Specialization</span>
                   <p className="text-color-2 text-lg md:text-xl">
                     Builder of Digital Systems
@@ -92,7 +98,7 @@ export const Overview = () => {
         </div>
       </section>
       {/*Second part of the section Overview */}
-      <section className="flex w-full min-h-screen items-center bg-[#131212]">
+      <section className="flex w-full min-h-screen items-center second-background">
         {/* mobile version */}
         <div className="md:hidden flex flex-col items-start px-10 w-full md:w-[85%] gap-8">
           <div className="flex gap-4 items-center">
@@ -132,13 +138,13 @@ export const Overview = () => {
         </div>
 
         {/* Desktop version */}
-        <div className="hidden md:flex absolute right-0 w-[85%] px-20 h-[80%] ">
+        <div className="hidden md:flex absolute right-0 w-[85%] px-20 h-[80%] gap-6 ">
           {/* left side */}
-          <div className="w-[40%] h-[90%] flex flex-col justify-center ">
-            <span className="text-[14rem] absolute -top-2 left-18 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold">
+          <div className="w-[40%] h-full flex flex-col gap-4 justify-end ">
+            <span className="text-[14rem] absolute -top-18 left-18 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold">
               02+
             </span>
-            <div className="w-full flex flex-col border-l-6 border-[#bc13fe] px-8 py-4 gap-4 z-10 ">
+            <div className="w-full flex flex-col border-l-6 border-[#bc13fe] px-8 py-6 gap-4 z-10 ">
               <h1 className="text-8xl max-w-54 text-white/90 font-semibold">
                 Years Active
               </h1>
@@ -146,7 +152,22 @@ export const Overview = () => {
                 CONTINUOUS DEPLOYMENT SINCE 2024
               </p>
             </div>
+            <div className=" flex flex-wrap justify-between gap-2 w-full text-color-2">
+              <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
+                <p className="w-[60%]">PERFORMANCE OPTIMIZATION</p>
+                <BsFillLightningChargeFill size={22} />
+              </div>
+              <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
+                <p className="w-[60%]">SCALABLE ARCHITECTURE</p>
+                <FaBuffer size={22} />
+              </div>
+              <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4  justify-between items-center">
+                <p className="w-[60%] ">SYSTEM SECURITY</p>
+                <FaShieldAlt size={22} />
+              </div>
+            </div>
           </div>
+
           {/* right side */}
           <div className="w-[60%] h-full flex flex-col gap-10 justify-center p-5">
             <div className="flex flex-col gap-6">
@@ -163,7 +184,7 @@ export const Overview = () => {
                 </h2>
               </div>
             </div>
-            <div className="flex flex-col w-[80%] gap-8 ">
+            <div className="flex flex-col w-full gap-8 ">
               <p className="text-[#eccff7]/70 text-2xl text-justify">
                 Structural logic prioritized over visual noise. Systems
                 engineered for resilience, scalability, and long-term stability
