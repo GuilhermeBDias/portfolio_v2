@@ -26,8 +26,8 @@ export const Overview = () => {
         />
         <div className="hidden md:absolute md:flex right-0 top-20 w-[30%] h-[70%] blur-3xl bg-radial-[at_100%_50%] from-[#bc13fe]/20 to-[#0b0b0b]" />
 
-        <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start  md:pl-10 z-10">
-          <div className="flex flex-col gap-4 px-8">
+        <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start md:px-25 z-10">
+          <div className="flex flex-col gap-4 px-8 md:px-0">
             <div className="flex relative items-center gap-2 tertiary-text-color pl-2 text-xs md:text-lg font-serif font-light tracking-[0.15rem] ">
               <span className=" bg-[#00f0ff]/80 w-10 md:w-12 h-0.5 bottom-2 " />
               <span>PROTOCOL: INITIATE PORTIFOLIO</span>
@@ -63,7 +63,7 @@ export const Overview = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex flex-col gap-6 w-full md:w-[40%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8">
+              <div className="flex flex-col gap-6 w-full md:w-[50%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8">
                 <span className="tertiary-text-color text-base font-normal tracking-[0.3rem]">
                   SYSTEM METADATA
                 </span>
@@ -100,7 +100,7 @@ export const Overview = () => {
       {/*Second part of the section Overview */}
       <section className="flex w-full min-h-screen items-center second-background">
         {/* mobile version */}
-        <div className="md:hidden flex flex-col items-start px-10 w-full md:w-[85%] gap-8">
+        <div className="md:hidden flex flex-col items-start px-8 w-full md:w-[85%] gap-8">
           <div className="flex gap-4 items-center">
             <div className="tertiary-color w-3 h-3" />
             <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">
@@ -138,38 +138,38 @@ export const Overview = () => {
         </div>
 
         {/* Desktop version */}
-        <div className="hidden md:flex absolute right-0 w-[85%] px-20 h-[80%] gap-6 ">
+        <div className="hidden md:flex absolute right-0 w-[85%] px-25 h-[70%] gap-6 ">
           {/* left side */}
-          <div className="w-[40%] h-full flex flex-col gap-4 justify-end ">
-            <span className="text-[14rem] absolute -top-18 left-18 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold">
-              02+
-            </span>
-            <div className="w-full flex flex-col border-l-6 border-[#bc13fe] px-8 py-6 gap-4 z-10 ">
-              <h1 className="text-8xl max-w-54 text-white/90 font-semibold">
+          <div className="w-[40%] h-full flex flex-col gap-4 justify-center ">
+            <div className="w-full relative flex flex-col border-l-6 border-[#bc13fe] px-8 py-6 gap-4 z-10 ">
+              <span className="text-[14rem] absolute -top-42 left-4 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold z-0">
+                02+
+              </span>
+              <h1 className="text-8xl max-w-54 text-white/90 font-semibold z-10">
                 Years Active
               </h1>
-              <p className="text-color text-2xl max-w-90">
+              <p className="text-color text-2xl max-w-90 z-10">
                 CONTINUOUS DEPLOYMENT SINCE 2024
               </p>
             </div>
             <div className=" flex flex-wrap justify-between gap-2 w-full text-color-2">
               <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
                 <p className="w-[60%]">PERFORMANCE OPTIMIZATION</p>
-                <BsFillLightningChargeFill size={22} />
+                <BsFillLightningChargeFill size={22} className="primary-text-color" />
               </div>
               <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
                 <p className="w-[60%]">SCALABLE ARCHITECTURE</p>
-                <FaBuffer size={22} />
+                <FaBuffer size={22} className="primary-text-color" />
               </div>
               <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4  justify-between items-center">
                 <p className="w-[60%] ">SYSTEM SECURITY</p>
-                <FaShieldAlt size={22} />
+                <FaShieldAlt size={22} className="primary-text-color" />
               </div>
             </div>
           </div>
 
           {/* right side */}
-          <div className="w-[60%] h-full flex flex-col gap-10 justify-center p-5">
+          <div className="w-[60%] h-full flex flex-col gap-10 justify-center pl-5">
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-4">
                 <div className="tertiary-color w-3 h-3" />

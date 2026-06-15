@@ -3,6 +3,7 @@ import { FootBar } from "./components/layout/footbar";
 import { NavBar } from "./components/layout/navbar";
 import { Overview } from "./sections/Overview/Overview";
 import { useState } from "react";
+import { Experience } from "./sections/Experience/Experience";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +22,9 @@ function App() {
       </AnimatePresence>
       <NavBar isOpen={isOpen} setIsOpen={setIsOpen} />
       <Overview />
-      {/* Overview */}
-      {/* Experience */}
+      <Experience />
       {/* Projects */}
       {/* Contact */}
-      <section id="experience" className="w-full h-screen"></section>
       <section id="projects" className="w-full h-screen"></section>
       <section id="contact" className="w-full h-screen"></section>
       <FootBar />
