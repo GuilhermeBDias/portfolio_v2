@@ -29,7 +29,7 @@ export const Overview = () => {
         <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start md:px-25 z-10">
           <div className="flex flex-col gap-4 px-8 md:px-0">
             <div className="flex relative items-center gap-2 tertiary-text-color pl-2 text-xs md:text-lg font-serif font-light tracking-[0.15rem] ">
-              <span className=" bg-[#00f0ff]/80 w-10 md:w-12 h-0.5 bottom-2 " />
+              <span className=" tertiary-color w-10 md:w-12 h-0.5 bottom-2 " />
               <span>PROTOCOL: INITIATE PORTIFOLIO</span>
             </div>
             <h1 className="text-5xl md:text-8xl flex flex-col font-bold text-color-2">
