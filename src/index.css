@@ -43,10 +43,10 @@ html {
 }
 
 .tertiary-color {
-  @apply bg-[#00f0ff];
+  @apply bg-[#00f0ff]/80;
 }
 .tertiary-text-color {
-  @apply text-[#00f0ff];
+  @apply text-[#00f0ff]/80;
 }
 
 .text-color {
