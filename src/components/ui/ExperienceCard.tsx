@@ -10,7 +10,7 @@ export const ExperienceCard = () => {
   });
 
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [0.2, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [0.2, 1]);
   const borderColor = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -22,27 +22,29 @@ export const ExperienceCard = () => {
       {/* TIMELINE */}
       <div className="relative flex flex-col items-center">
         {/* square */}
-        <div className="w-2 h-2 primary-color z-10" />
+        <motion.div style={{opacity}} className="w-2 h-2 primary-color z-10 rounded-full shadow-[0px_0px_8px_3px_rgba(203,52,223,0.7)]" />
 
         {/* LINE */}
         <div className="relative w-0.5 flex-1 bg-neutral-800 mt-2">
           {/* ANIMATED LINE */}
           <motion.div
-            style={{ height }}
-            className="absolute top-0 left-0 w-full tertiary-color origin-top"
+            style={{ height, opacity }}
+            className="absolute top-0 left-0 w-full bg-linear-to-b from-[#00f0ff] from-30% to-[#bc13fe] to-60% origin-top"
           />
         </div>
       </div>
       {/* Card */}
       <div className="flex flex-col  gap-4">
-        <div className="flex flex-col md:flex-row-reverse md:justify-between gap-2">
-          <motion.span className="tertiary-text-color text-sm md:text-xl" style={{opacity}}>2025 - PRESENT</motion.span>
-          <h2 className="text-base md:text-3xl">SOFTWARE ENGINEER INTERN</h2>
-        </div>
-        <p className="text-color-2 text-base md:text-2xl">
+        <motion.div className="flex flex-col md:flex-row-reverse md:justify-between gap-2">
+          <motion.span className="flex flex-col gap-1 tertiary-text-color text-sm md:text-xl" style={{opacity}}>2025 - PRESENT
+            <span className="text-base text-color">Current - Node</span>
+          </motion.span>
+          <motion.h2 style={{opacity}} className="text-base md:text-3xl">SOFTWARE ENGINEER INTERN</motion.h2>
+        </motion.div>
+        <motion.p style={{opacity}} className="text-color-2 text-base md:text-2xl w-full md:w-[80%]">
           Defining core infrastructured for next-gen fintech solutions.
           Orchestrating monolithic deployments and microservice bridges.
-        </p>
+        </motion.p>
 
         <div>
           <ul className="flex gap-2 text-sm md:text-lg">
