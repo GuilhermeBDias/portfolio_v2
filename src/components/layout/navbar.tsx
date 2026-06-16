@@ -22,7 +22,10 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
     const section = document.getElementById(id);
 
     if (section) {
-      section.scrollIntoView();
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }
   };
 
