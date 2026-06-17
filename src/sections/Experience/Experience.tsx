@@ -1,4 +1,5 @@
 import { ExperienceCard } from "../../components/ui/ExperienceCard";
+import { Experiences } from "../../constants/experience_constants";
 
 export const Experience = () => {
   return (
@@ -15,9 +16,18 @@ export const Experience = () => {
           </h3>
         </div>
         <div className="w-full flex flex-col gap-10">
-          <ExperienceCard></ExperienceCard>
-          <ExperienceCard></ExperienceCard>
-          <ExperienceCard></ExperienceCard>
+          {Experiences.map ((experience, index) => (
+            <ExperienceCard
+              key={index}
+              title={experience.title}
+              company={experience.company}
+              mobile_company={experience.mobile_company}
+              startDate={experience.startDate}
+              endDate={experience.endDate}
+              description={experience.description}
+              skills={experience.skills}
+            />
+          ))}
         </div>
       </div>
     </section>
