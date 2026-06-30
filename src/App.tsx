@@ -5,6 +5,7 @@ import { Overview } from "./sections/Overview/Overview";
 import { useState } from "react";
 import { Experience } from "./sections/Experience/Experience";
 import { Loader } from "./components/ui/Loader";
+import { Projects } from "./sections/Projects/Projects";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +52,7 @@ function App() {
           <NavBar isOpen={isOpen} setIsOpen={setIsOpen} />
           <Overview />
           <Experience />
-          <section id="projects" className="w-full h-screen"></section>
+          <Projects />
           <section id="contact" className="w-full h-screen"></section>
           <FootBar />
         </motion.div>

@@ -26,7 +26,7 @@ export const Overview = () => {
         />
         <div className="hidden md:absolute md:flex right-0 top-20 w-[30%] h-[70%] blur-3xl bg-radial-[at_100%_50%] from-[#bc13fe]/20 to-[#0b0b0b]" />
 
-        <div className="md:absolute flex  md:right-0 h-full w-full md:w-[85%]  items-center md:justify-start md:px-25 z-10">
+        <div className="md:absolute flex md:right-0 h-full w-full md:w-[85%] items-center md:justify-start md:px-25 z-10">
           <div className="flex flex-col gap-4 px-8 md:px-0">
             <div className="flex relative items-center gap-2 tertiary-text-color pl-2 text-xs md:text-lg font-serif font-light tracking-[0.15rem] ">
               <span className=" tertiary-color w-10 md:w-12 h-0.5 bottom-2 " />
