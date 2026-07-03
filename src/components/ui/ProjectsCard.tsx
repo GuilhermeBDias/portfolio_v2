@@ -1,12 +1,8 @@
 import { motion } from "motion/react";
+import type { Project } from "../../types/project";
 
-interface ProjectsCardProps {
-  modulo: string;
-  status: string;
-  title: string;
-  description: string;
-  image: string;
-  stacks: string[];
+export interface ProjectsCardProps extends Project {
+  onOpen: () => void;
 }
 
 export const ProjectsCard = ({
@@ -16,6 +12,7 @@ export const ProjectsCard = ({
   description,
   image,
   stacks,
+  onOpen
 }: ProjectsCardProps) => {
   const content = {
     hidden: {},
@@ -111,6 +108,7 @@ export const ProjectsCard = ({
           </motion.div>
           <motion.button
             variants={item}
+            onClick={onOpen}
             className="cursor-pointer w-full md:w-[50%]  p-2 border border-[#bc13fe] hover:bg-[#bc13fe] hover:text-[#0b0b0b] transition-colors "
           >
             ACCESS_MODULE
@@ -121,49 +119,3 @@ export const ProjectsCard = ({
   );
 };
 
-// 3. Stack tags aparecendo tipo “ping” (detalhe foda)
-// const stackItem = {
-//   hidden: { opacity: 0, scale: 0.8 },
-//   show: { opacity: 1, scale: 1 },
-// };
-
-// 👉 dá sensação de:
-
-// “tag sendo registrada”
-// mais dinâmico que só fade
-
-// 2. “Montagem” do card (ESSA É A JOIA 💎)
-
-// Dentro do ProjectsCard, você faz o conteúdo aparecer em ordem:
-
-// const content = {
-//   hidden: {},
-//   show: {
-//     transition: {
-//       staggerChildren: 0.08,
-//       delayChildren: 0.2,
-//     },
-//   },
-// };
-
-// const item = {
-//   hidden: { opacity: 0, y: 20 },
-//   show: { opacity: 1, y: 0 },
-// };
-
-// Aplicação:
-
-// <motion.div
-//   variants={content}
-//   initial="hidden"
-//   whileInView="show"
-//   className="flex flex-col items-center w-full z-10 gap-6"
-// >
-
-// E nos filhos:
-
-// <motion.h1 variants={item} />
-// <motion.p variants={item} />
-// <motion.button variants={item} />
-
-// 👉 isso cria exatamente:

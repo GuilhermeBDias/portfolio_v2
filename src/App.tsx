@@ -9,7 +9,7 @@ import { Projects } from "./sections/Projects/Projects";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <AnimatePresence mode="wait">
