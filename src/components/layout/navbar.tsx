@@ -17,14 +17,13 @@ type NavBarProps = {
 export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
   const [active, setActive] = useState<string>("Overview");
 
-
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
 
     if (section) {
       section.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
   };
@@ -76,6 +75,10 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [isOpen]);
 
   useEffect(() => {

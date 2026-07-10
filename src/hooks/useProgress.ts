@@ -11,27 +11,39 @@ export const useProgress = (
   useEffect(() => {
     if (!start) return;
 
-    setProgress(0);
-    setCompleted(false);
+    const frameInterval = 16; // ~60fps
+    const increment = max / (duration / frameInterval);
 
-    const interval = 16; // ~60fps
-    const increment = max / (duration / interval);
+    const resetTimer = window.setTimeout(() => {
+      setProgress(0);
+      setCompleted(false);
+    }, 0);
 
-    const timer = setInterval(() => {
+    const progressTimer = setInterval(() => {
       setProgress((prev) => {
         const next = prev + increment;
 
         if (next >= max) {
-          clearInterval(timer);
+          clearInterval(progressTimer);
           setCompleted(true);
           return max;
         }
 
         return next;
       });
-    }, interval);
+    }, frameInterval);
 
-    return () => clearInterval(timer);
+    const finishTimer = window.setTimeout(() => {
+      setProgress(max);
+      setCompleted(true);
+      clearInterval(progressTimer);
+    }, duration);
+
+    return () => {
+      clearTimeout(resetTimer);
+      clearInterval(progressTimer);
+      clearTimeout(finishTimer);
+    };
   }, [duration, max, start]);
 
   return {

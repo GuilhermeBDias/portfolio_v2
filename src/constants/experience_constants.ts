@@ -1,4 +1,6 @@
-export const Experiences = [
+import type { Experience } from "../types/experience";
+
+export const experiences: Experience[] = [
   {
     title: "Software Engineer Intern",
     company: "Public Defender's Office",
@@ -18,5 +20,5 @@ export const Experiences = [
     description:
       "Conducted research on the application of machine learning algorithms in natural language processing tasks, focusing on sentiment analysis and text classification.",
     skills: ["Python", "Machine Learning", "NLP"],
-  }
-]
+  },
+];

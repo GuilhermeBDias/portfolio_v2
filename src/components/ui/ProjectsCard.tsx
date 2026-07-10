@@ -11,10 +11,10 @@ export const ProjectsCard = ({
   title,
   description,
   image,
-  stacks,
-  onOpen
+  primary_stacks,
+  onOpen,
 }: ProjectsCardProps) => {
-  const content = {
+  const contentVariants = {
     hidden: {},
     show: {
       transition: {
@@ -24,7 +24,7 @@ export const ProjectsCard = ({
     },
   };
 
-  const item = {
+  const itemVariants = {
     hidden: {
       opacity: 0,
       y: 20,
@@ -38,7 +38,7 @@ export const ProjectsCard = ({
     },
   };
 
-  const stackItem = {
+  const stackItemVariants = {
     hidden: {
       opacity: 0,
       x: -20,
@@ -52,7 +52,7 @@ export const ProjectsCard = ({
     },
   };
 
-  const imageAnimation = {
+  const imageVariants = {
     hidden: {
       opacity: 0,
     },
@@ -66,10 +66,10 @@ export const ProjectsCard = ({
   return (
     <motion.article
       className="flex flex-col w-full h-140 border border-gray-900"
-      variants={content}
+      variants={contentVariants}
     >
       <motion.header
-        variants={item}
+        variants={itemVariants}
         className="flex w-full items-center justify-between border-b border-gray-900 px-6 py-3 bg-[#0b0b0b]"
       >
         <div className="flex items-center gap-2">
@@ -82,32 +82,32 @@ export const ProjectsCard = ({
         <motion.div
           className="absolute inset-0 bg-cover bg-center grayscale"
           style={{ backgroundImage: `url(${image})` }}
-          variants={imageAnimation}
+          variants={imageVariants}
         />
         <div className="absolute inset-0 bg-linear-to-b from-[#0b0b0b]/50 via-[#0b0b0b]/90 to-[#0b0b0b]" />
         <motion.div
-          variants={content}
+          variants={contentVariants}
           className="flex flex-col items-center w-full z-10 gap-6"
         >
           <div className="absolute top-6 right-6 flex flex-col items-end gap-3">
-            {stacks.map((stack, index) => (
+            {primary_stacks.map((stack) => (
               <motion.span
-                key={index}
+                key={stack}
                 className="bg-[#0b0b0b] px-2 py-1 border border-[#00f0ff] tertiary-text-color"
-                variants={stackItem}
+                variants={stackItemVariants}
               >
                 {stack}
               </motion.span>
             ))}
           </div>
-          <motion.div variants={item} className="flex flex-col w-full gap-2">
+          <motion.div variants={itemVariants} className="flex flex-col w-full gap-2">
             <h1 className="text-3xl md:text-4xl font-serif font-bold">
               {title}
             </h1>
-            <p className="text-base md:text-lg">{description}</p>
+            <p className="text-base md:text-lg text-color">{description}</p>
           </motion.div>
           <motion.button
-            variants={item}
+            variants={itemVariants}
             onClick={onOpen}
             className="cursor-pointer w-full md:w-[50%]  p-2 border border-[#bc13fe] hover:bg-[#bc13fe] hover:text-[#0b0b0b] transition-colors "
           >

@@ -6,16 +6,22 @@ export const useTypewriter = (text: string, speed: number, start: boolean) => {
   useEffect(() => {
     if (!start) return;
 
-    let i = 0;
+    let index = 0;
+    const resetTimer = window.setTimeout(() => {
+      setDisplayedText("");
+    }, 0);
 
     const interval = setInterval(() => {
-      setDisplayedText(text.slice(0, i + 1));
-      i++;
+      index += 1;
+      setDisplayedText(text.slice(0, index));
 
-      if (i === text.length) clearInterval(interval);
+      if (index === text.length) clearInterval(interval);
     }, speed);
 
-    return () => clearInterval(interval);
+    return () => {
+      window.clearTimeout(resetTimer);
+      clearInterval(interval);
+    };
   }, [text, speed, start]);
 
   return displayedText;

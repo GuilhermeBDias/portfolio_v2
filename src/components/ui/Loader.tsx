@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
 import { useTypewriter } from "../../hooks/useTypewriter";
 
+const loaderTexts = [
+  "Initializing system...",
+  "Loading modules...",
+  "Connecting to server...",
+  "Starting UI...",
+] as const;
+
+const loaderSpeed = 60;
+
+const getDelay = (text: string) => text.length * loaderSpeed + 500;
+
+const totalTime =
+  getDelay(loaderTexts[0]) +
+  getDelay(loaderTexts[1]) +
+  getDelay(loaderTexts[2]) +
+  getDelay(loaderTexts[3]);
+
 export const Loader = ({ onFinish }: { onFinish: () => void }) => {
   const [step, setStep] = useState(0);
-  const speed = 60;
-
-  const texts = [
-    "Initializing system...",
-    "Loading modules...",
-    "Connecting to server...",
-    "Starting UI...",
-  ];
-
-  const getDelay = (text: string) => text.length * speed + 500;
-
-  const totalTime =
-    getDelay(texts[0]) +
-    getDelay(texts[1]) +
-    getDelay(texts[2]) +
-    getDelay(texts[3]);
-
-  const line1 = useTypewriter(texts[0], speed, step >= 0);
-  const line2 = useTypewriter(texts[1], speed, step >= 1);
-  const line3 = useTypewriter(texts[2], speed, step >= 2);
-  const line4 = useTypewriter(texts[3], speed, step >= 3);
+  const line1 = useTypewriter(loaderTexts[0], loaderSpeed, step >= 0);
+  const line2 = useTypewriter(loaderTexts[1], loaderSpeed, step >= 1);
+  const line3 = useTypewriter(loaderTexts[2], loaderSpeed, step >= 2);
+  const line4 = useTypewriter(loaderTexts[3], loaderSpeed, step >= 3);
 
   useEffect(() => {
-    const delay1 = getDelay(texts[0]);
-    const delay2 = getDelay(texts[1]);
-    const delay3 = getDelay(texts[2]);
+    const delay1 = getDelay(loaderTexts[0]);
+    const delay2 = getDelay(loaderTexts[1]);
+    const delay3 = getDelay(loaderTexts[2]);
 
     const timers = [
       setTimeout(() => setStep(1), delay1),
@@ -36,9 +36,13 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
       setTimeout(() => setStep(3), delay1 + delay2 + delay3),
     ];
 
-    setTimeout(onFinish, totalTime);
-    return () => timers.forEach(clearTimeout);
-  }, []);
+    const finishTimer = setTimeout(onFinish, totalTime);
+
+    return () => {
+      timers.forEach(clearTimeout);
+      clearTimeout(finishTimer);
+    };
+  }, [onFinish]);
 
   return (
     <div className="flex flex-col w-full h-screen bg-black justify-center text-green-400 font-mono p-6 items-center">
