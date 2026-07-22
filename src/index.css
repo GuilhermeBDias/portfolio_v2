@@ -61,3 +61,15 @@ html {
   @apply bg-[#131212];
 }
 /*  */
+
+
+@layer utilities {
+  .autofill-dark:-webkit-autofill,
+  .autofill-dark:-webkit-autofill:hover,
+  .autofill-dark:-webkit-autofill:focus,
+  .autofill-dark:-webkit-autofill:active {
+    -webkit-text-fill-color: #f5f5f5;
+    transition: background-color 9999999s ease-in-out,
+    color 999999s ease-in-out;
+  }
+}

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { LuDatabase } from "react-icons/lu";
 
 const recipientEmail = "guilhermebdias55@gmail.com";
 
@@ -58,7 +59,7 @@ export const Contact = () => {
       id="contact"
       className="relative flex w-full min-h-screen items-center justify-end py-24 md:py-0"
     >
-      <div className="absolute right-0 top-20 w-[35%] h-[55%] blur-3xl bg-radial-[at_100%_50%] from-[#00f0ff]/12 to-[#0b0b0b]" />
+      <div className="absolute right-0 top-30 w-[35%] h-[55%] blur-3xl bg-radial-[at_100%_50%] from-[#00f0ff]/12 to-[#0b0b0b]" />
       <div className="absolute left-10 bottom-10 w-[25%] h-[35%] blur-3xl bg-radial-[at_0%_50%] from-[#bc13fe]/12 to-[#0b0b0b]" />
 
       <motion.div
@@ -66,7 +67,7 @@ export const Contact = () => {
         variants={sectionVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.35 }}
+        viewport={{ once: true, amount: 0.45 }}
       >
         <motion.div
           className="flex flex-col w-full items-center  gap-4 text-center "
@@ -82,54 +83,62 @@ export const Contact = () => {
             </p>
             <span className="tertiary-color w-12 md:w-20 h-0.5" />
           </div>
-          
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit}
-          className="w-full max-w-2xl border border-gray-800 bg-[#0b0b0b]/75 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-6"
+          className="w-full max-w-2xl border border-gray-800 bg-[#0b0b0b]/75 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-8"
           variants={itemVariants}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className="flex flex-col gap-2">
-              <span className="sr-only">Nome</span>
+          {/* Inputs */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <label className="flex flex-col gap-2 text-xs md:text-sm">
+              <span className="tertiary-text-color tracking-[0.10rem]">{`> SUBJECT_IDENTITY`}</span>
               <input
                 type="text"
                 name="name"
-                placeholder="SUBJECT_IDENTITY"
+                placeholder="NAME_REQUIRED"
                 autoComplete="name"
-                className="w-full border-b border-gray-700 bg-transparent px-0 py-3 text-sm md:text-base text-color-2 outline-none placeholder:text-color/60 focus:border-[#00f0ff] transition-colors"
+                required
+                className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base  outline-none focus:border-[#00f0ff]/70 transition-colors"
               />
             </label>
-            <label className="flex flex-col gap-2">
-              <span className="sr-only">E-mail</span>
+            <label className="flex flex-col gap-2 text-xs md:text-sm ">
+              <span className="tertiary-text-color tracking-[0.10rem]">
+                @ COMMUNICATION_REF
+              </span>
               <input
                 type="email"
                 name="email"
-                placeholder="COMMUNICATION_REF"
+                placeholder="EMAIL_REQUIRED"
                 autoComplete="email"
                 required
-                className="w-full border-b border-gray-700 bg-transparent px-0 py-3 text-sm md:text-base text-color-2 outline-none placeholder:text-color/60 focus:border-[#00f0ff] transition-colors"
+                className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base outline-none focus:border-[#00f0ff]/70 transition-colors"
               />
             </label>
           </div>
 
+          {/* Textarea */}
+
           <label className="flex flex-col gap-2">
-            <span className="sr-only">Mensagem</span>
+            <span className="flex gap-1 items-center tertiary-text-color tracking-[0.10rem] text-xs md:text-sm">
+              <LuDatabase />
+              PACKET_DATA
+            </span>
             <textarea
               name="message"
-              placeholder="PACKET_DATA"
+              placeholder="ENCODE_MESSAGE_HERE"
               rows={6}
               required
-              className="w-full resize-none border border-gray-800 bg-transparent px-4 py-4 text-sm md:text-base text-color-2 outline-none placeholder:text-color/60 focus:border-[#00f0ff] transition-colors"
+              className="w-full resize-none border border-gray-800 bg-transparent px-4 py-4 text-sm md:text-base outline-none placeholder:text-color/60 focus:border-[#00f0ff]/70 transition-colors caret-[#00f0ff]"
             />
           </label>
 
           <motion.button
             type="submit"
-            className="w-full border border-[#bc13fe] px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem] uppercase text-color-2 transition-colors hover:bg-[#bc13fe] hover:text-[#0b0b0b]"
+            className="w-full border border-[#bc13fe] px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem]  transition-colors hover:bg-[#bc13fe]/80 hover:text-[#0b0b0b] cursor-pointer"
             variants={itemVariants}
-            whileHover={{ y: -2 }}
             whileTap={{ scale: 0.99 }}
           >
             EXECUTE_TRANSMISSION
