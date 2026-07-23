@@ -4,6 +4,7 @@ import { projects } from "../../constants/projects_constants";
 import { AnimatePresence, motion } from "motion/react";
 import type { Project } from "../../types/project";
 import { ProjectModal } from "../../components/ui/ProjectModal";
+import { createRevealVariants } from "../../utils/motionVariants";
 
 export const Projects = () => {
   const [showAll, setShowAll] = useState(false);
@@ -11,30 +12,11 @@ export const Projects = () => {
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const card = {
-    hidden: {
-      opacity: 0,
-      y: 120,
-      filter: "blur(8px)",
-      transition: {
-        duration: 0.6,
-      },
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.6 },
-    },
-    exit: {
-      opacity: 0,
-      y: -40,
-      filter: "blur(6px)",
-      transition: {
-        duration: 0.35,
-      },
-    },
-  };
+  const card = createRevealVariants({
+    hiddenY: 120,
+    duration: 0.6,
+    blur: 6,
+  });
   return (
     <section
       id="projects"

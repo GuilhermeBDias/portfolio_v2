@@ -1,38 +1,18 @@
 import { motion } from "motion/react";
+import {
+  createRevealVariants,
+  createStaggerVariants,
+} from "../../utils/motionVariants";
 import { LuDatabase } from "react-icons/lu";
 
 const recipientEmail = "guilhermebdias55@gmail.com";
 
-const sectionVariants = {
-  hidden: {
-    opacity: 0,
-    y: 60,
-    filter: "blur(8px)",
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.7,
-      staggerChildren: 0.12,
-    },
-  },
-};
+const contentVariants = createStaggerVariants({ delayChildren: 0.2, staggerChildren: 0.3 });
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 18,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
+const itemVariants = createRevealVariants({
+  hiddenY: 28,
+  duration: 0.6,
+});
 
 export const Contact = () => {
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
@@ -44,7 +24,7 @@ export const Contact = () => {
     const message = String(formData.get("message") ?? "").trim();
 
     const subject = encodeURIComponent(
-      `Contato via Website - ${name || "Visistante"}`,
+      `Contato via Website - ${name || "Visitante"}`,
     );
     const body = encodeURIComponent(
       `Novo contato recebido do website:\n\nNome: ${name || "Não informado"}\nE-mail: ${email || "Não informado"}\n\nMensagem:\n${message || ""}\n\nSent from Dias.system's website.`,
@@ -64,86 +44,104 @@ export const Contact = () => {
 
       <motion.div
         className="relative z-10 flex flex-col items-center justify-center w-full md:w-[85%] px-8 md:px-20 gap-8"
-        variants={sectionVariants}
+        variants={contentVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.45 }}
       >
         <motion.div
           className="flex flex-col w-full items-center  gap-4 text-center "
-          variants={itemVariants}
+          variants={contentVariants}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-color-2 tracking-tight">
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl md:text-6xl font-bold text-color-2 tracking-tight"
+          >
             ESTABILISH_LINK
-          </h1>
-          <div className="flex items-center w-full justify-center gap-4">
+          </motion.h1>
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center w-full justify-center gap-4"
+          >
             <span className="tertiary-color w-12 md:w-20 h-0.5" />
             <p className="tertiary-text-color text-xs md:text-sm tracking-[0.30rem] uppercase">
               SECURE_CHANNEL_READY
             </p>
             <span className="tertiary-color w-12 md:w-20 h-0.5" />
-          </div>
+          </motion.div>
         </motion.div>
 
-        <motion.form
-          onSubmit={handleSubmit}
-          className="w-full max-w-2xl border border-gray-800 bg-[#0b0b0b]/75 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-8"
+        {/* Formulário */}
+        <motion.div
           variants={itemVariants}
+          className="flex justify-center w-full"
         >
-          {/* Inputs */}
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <label className="flex flex-col gap-2 text-xs md:text-sm">
-              <span className="tertiary-text-color tracking-[0.10rem]">{`> SUBJECT_IDENTITY`}</span>
-              <input
-                type="text"
-                name="name"
-                placeholder="NAME_REQUIRED"
-                autoComplete="name"
-                required
-                className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base  outline-none focus:border-[#00f0ff]/70 transition-colors"
-              />
-            </label>
-            <label className="flex flex-col gap-2 text-xs md:text-sm ">
-              <span className="tertiary-text-color tracking-[0.10rem]">
-                @ COMMUNICATION_REF
-              </span>
-              <input
-                type="email"
-                name="email"
-                placeholder="EMAIL_REQUIRED"
-                autoComplete="email"
-                required
-                className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base outline-none focus:border-[#00f0ff]/70 transition-colors"
-              />
-            </label>
-          </div>
-
-          {/* Textarea */}
-
-          <label className="flex flex-col gap-2">
-            <span className="flex gap-1 items-center tertiary-text-color tracking-[0.10rem] text-xs md:text-sm">
-              <LuDatabase />
-              PACKET_DATA
-            </span>
-            <textarea
-              name="message"
-              placeholder="ENCODE_MESSAGE_HERE"
-              rows={6}
-              required
-              className="w-full resize-none border border-gray-800 bg-transparent px-4 py-4 text-sm md:text-base outline-none placeholder:text-color/60 focus:border-[#00f0ff]/70 transition-colors caret-[#00f0ff]"
-            />
-          </label>
-
-          <motion.button
-            type="submit"
-            className="w-full border border-[#bc13fe] px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem]  transition-colors hover:bg-[#bc13fe]/80 hover:text-[#0b0b0b] cursor-pointer"
-            variants={itemVariants}
-            whileTap={{ scale: 0.99 }}
+          <motion.form
+            onSubmit={handleSubmit}
+            className="w-full max-w-2xl border border-gray-800 bg-[#0b0b0b]/75 backdrop-blur-sm p-6 md:p-8 flex flex-col gap-8"
+            variants={contentVariants}
           >
-            EXECUTE_TRANSMISSION
-          </motion.button>
-        </motion.form>
+            {/* Inputs */}
+
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <motion.label
+                variants={itemVariants}
+                className="flex flex-col gap-2 text-xs md:text-sm"
+              >
+                <span className="tertiary-text-color tracking-[0.10rem]">{`> SUBJECT_IDENTITY`}</span>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="NAME_REQUIRED"
+                  autoComplete="name"
+                  required
+                  className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base  outline-none focus:border-[#00f0ff]/60 transition-colors"
+                />
+              </motion.label>
+              <motion.label
+                variants={itemVariants}
+                className="flex flex-col gap-2 text-xs md:text-sm "
+              >
+                <span className="tertiary-text-color tracking-[0.10rem]">
+                  @ COMMUNICATION_REF
+                </span>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL_REQUIRED"
+                  autoComplete="email"
+                  required
+                  className="autofill-dark w-full border-b border-gray-700 bg-transparent pl-4 py-2 text-sm md:text-base outline-none focus:border-[#00f0ff]/60 transition-colors"
+                />
+              </motion.label>
+            </motion.div>
+
+            {/* Textarea */}
+
+            <motion.label variants={itemVariants} className="flex flex-col gap-2">
+              <span className="flex gap-1 items-center tertiary-text-color tracking-[0.10rem] text-xs md:text-sm">
+                <LuDatabase />
+                PACKET_DATA
+              </span>
+              <textarea
+                name="message"
+                placeholder="ENCODE_MESSAGE_HERE"
+                rows={6}
+                required
+                className="w-full resize-none border border-gray-800 bg-transparent px-4 py-4 text-sm md:text-base outline-none placeholder:text-color/60 focus:border-[#00f0ff]/60 transition-colors "
+              />
+            </motion.label>
+
+            <motion.button
+              type="submit"
+              className="w-full border border-[#bc13fe] px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem] transition-colors hover:bg-[#bc13fe]/80 hover:text-[#0b0b0b] cursor-pointer"
+              variants={itemVariants}
+              whileTap={{ scale: 0.95 }}
+            >
+              EXECUTE_TRANSMISSION
+            </motion.button>
+          </motion.form>
+        </motion.div>
       </motion.div>
     </section>
   );
