@@ -5,16 +5,18 @@ import {
 } from "../../utils/motionVariants";
 import { LuDatabase } from "react-icons/lu";
 
-const recipientEmail = "guilhermebdias55@gmail.com";
-
-const contentVariants = createStaggerVariants({ delayChildren: 0.2, staggerChildren: 0.3 });
-
-const itemVariants = createRevealVariants({
-  hiddenY: 28,
-  duration: 0.6,
-});
-
 export const Contact = () => {
+  const recipientEmail = "guilhermebdias55@gmail.com";
+
+  const contentVariants = createStaggerVariants({
+    delayChildren: 0.2,
+    staggerChildren: 0.3,
+  });
+
+  const itemVariants = createRevealVariants({
+    hiddenY: 28,
+    duration: 0.6,
+  });
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -118,7 +120,10 @@ export const Contact = () => {
 
             {/* Textarea */}
 
-            <motion.label variants={itemVariants} className="flex flex-col gap-2">
+            <motion.label
+              variants={itemVariants}
+              className="flex flex-col gap-2"
+            >
               <span className="flex gap-1 items-center tertiary-text-color tracking-[0.10rem] text-xs md:text-sm">
                 <LuDatabase />
                 PACKET_DATA
