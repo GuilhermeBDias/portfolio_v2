@@ -1,7 +1,13 @@
+export type ProjectStatus =
+  | "Concluído"
+  | "Em Andamento"
+  | "Pendente"
+  | "Em Desenvolvimento";
+
 export interface Project {
   id: number;
   modulo: string;
-  status: string;
+  status: ProjectStatus;
   title: string;
   description: string;
   detailed_description: string;

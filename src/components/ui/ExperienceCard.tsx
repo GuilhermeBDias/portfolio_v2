@@ -1,15 +1,8 @@
 import { useScroll, useTransform, motion } from "motion/react";
 import { useRef } from "react";
+import type { Experience } from "../../types/experience";
 
-interface ExperienceCardProps {
-  title?: string;
-  company?: string;
-  mobile_company?: string;
-  startDate?: string;
-  endDate?: string | null;
-  description?: string;
-  skills: string[];
-}
+type ExperienceCardProps = Experience;
 
 export const ExperienceCard = ({
   title,

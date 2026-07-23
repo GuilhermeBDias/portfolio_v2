@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { navigation_links } from "../../constants/navigation_links";
 import { MdTerminal, MdMenu, MdClose } from "react-icons/md";
 import {
@@ -6,12 +6,13 @@ import {
   easeInOut,
   motion,
   stagger,
+  
   type Variants,
 } from "motion/react";
 
 type NavBarProps = {
   isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
