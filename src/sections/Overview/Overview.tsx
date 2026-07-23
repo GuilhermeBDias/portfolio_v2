@@ -98,7 +98,11 @@ export const Overview = () => {
         </div>
       </section>
       {/*Second part of the section Overview */}
-      <section className="flex w-full min-h-screen items-center second-background">
+      <section className="relative flex w-full min-h-screen items-center second-background">
+        {/* Gradient overlays */}
+        <div className="absolute inset-x-0 top-0 h-22 bg-linear-to-b from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-22 bg-linear-to-t from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
+
         {/* mobile version */}
         <div className="md:hidden flex flex-col items-start px-8 w-full md:w-[85%] gap-8">
           <div className="flex gap-4 items-center">
@@ -155,7 +159,10 @@ export const Overview = () => {
             <div className=" flex flex-wrap justify-between gap-2 w-full text-color-2">
               <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
                 <p className="w-[60%]">PERFORMANCE OPTIMIZATION</p>
-                <BsFillLightningChargeFill size={22} className="primary-text-color" />
+                <BsFillLightningChargeFill
+                  size={22}
+                  className="primary-text-color"
+                />
               </div>
               <div className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center">
                 <p className="w-[60%]">SCALABLE ARCHITECTURE</p>

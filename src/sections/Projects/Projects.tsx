@@ -22,7 +22,11 @@ export const Projects = () => {
       id="projects"
       className="relative flex justify-center md:justify-end items-center w-full min-h-screen second-background"
     >
-      <div className="flex flex-col items-center w-[85%] h-full py-10 gap-4 md:px-20">
+      {/* Gradient overlays */}
+      <div className="absolute inset-x-0 top-0 h-22 bg-linear-to-b from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-22 bg-linear-to-t from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
+
+      <div className="flex flex-col items-center w-[85%] h-full py-10 gap-4 md:px-20 z-10">
         <div className="flex gap-4 items-center justify-start w-full">
           <div className="tertiary-color w-3 h-3" />
           <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
