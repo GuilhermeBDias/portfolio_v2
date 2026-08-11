@@ -139,7 +139,7 @@ export const Contact = () => {
 
             <motion.button
               type="submit"
-              className="w-full border border-[#bc13fe] px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem] transition-colors hover:bg-[#bc13fe]/80 hover:text-[#0b0b0b] cursor-pointer"
+              className="w-full px-6 py-3 text-sm md:text-base font-medium tracking-[0.12rem] bg-linear-to-br from-[#bc13fe]/90 to-[#5C347D] text-[#FAECFF] cursor-pointer hover:text-black/60 transition-colors"
               variants={itemVariants}
               whileTap={{ scale: 0.95 }}
             >

@@ -1,5 +1,6 @@
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { FaBuffer, FaShieldAlt } from "react-icons/fa";
+import { motion } from "motion/react";
 
 export const Overview = () => {
   const handleClick = (id: string) => {
@@ -49,18 +50,20 @@ export const Overview = () => {
                   </p>
                 </div>
                 <div className="flex gap-4">
-                  <button
+                  <motion.button
                     className="p-4 bg-linear-to-br from-[#bc13fe]/90 to-[#5C347D] text-xl font-semibold text-[#FAECFF] cursor-pointer hover:text-black/60 transition-colors"
                     onClick={() => handleClick("projects")}
+                    whileTap={{ scale: 0.95 }}
                   >
                     View_Work
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     className="p-4 border border-[#00f0ff] tertiary-text-color text-xl cursor-pointer hover:bg-white/20 transition-colors"
                     onClick={() => handleClick("contact")}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Contact_me
-                  </button>
+                  </motion.button>
                 </div>
               </div>
               <div className="flex flex-col gap-6 w-full md:w-[50%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8">
