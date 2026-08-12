@@ -1,70 +1,144 @@
 import { useEffect, useState } from "react";
 import { useTypewriter } from "../../hooks/useTypewriter";
+import { useLoaderProgress } from "../../hooks/useLoaderProgress";
+import { motion } from "motion/react";
 
-const loaderTexts = [
-  "Initializing system...",
-  "Loading modules...",
-  "Connecting to server...",
-  "Starting UI...",
-] as const;
-
-const loaderSpeed = 60;
+const loaderSpeed = 40;
 
 const getDelay = (text: string) => text.length * loaderSpeed + 500;
 
-const totalTime =
-  getDelay(loaderTexts[0]) +
-  getDelay(loaderTexts[1]) +
-  getDelay(loaderTexts[2]) +
-  getDelay(loaderTexts[3]);
+const loaderStages = [
+  {
+    text: "Initializing system...",
+    duration: getDelay("Initializing system..."),
+    pause: 500,
+  },
+  {
+    text: "Loading modules...",
+    duration: getDelay("Loading modules..."),
+    pause: 329,
+  },
+  {
+    text: "Connecting to server...",
+    duration: getDelay("Connecting to server..."),
+    pause: 420,
+  },
+  {
+    text: "Starting UI...",
+    duration: getDelay("Starting UI..."),
+    pause: 0,
+  },
+] as const;
 
 export const Loader = ({ onFinish }: { onFinish: () => void }) => {
-  const [step, setStep] = useState(0);
-  const line1 = useTypewriter(loaderTexts[0], loaderSpeed, step >= 0);
-  const line2 = useTypewriter(loaderTexts[1], loaderSpeed, step >= 1);
-  const line3 = useTypewriter(loaderTexts[2], loaderSpeed, step >= 2);
-  const line4 = useTypewriter(loaderTexts[3], loaderSpeed, step >= 3);
+  const [activeStage, setActiveStage] = useState(0);
+  const [showButton, setShowButton] = useState(false);
+
+  const progress = useLoaderProgress(loaderStages);
+
+  const currentText = useTypewriter(
+    loaderStages[activeStage].text,
+    loaderSpeed,
+    true,
+  );
 
   useEffect(() => {
-    const delay1 = getDelay(loaderTexts[0]);
-    const delay2 = getDelay(loaderTexts[1]);
-    const delay3 = getDelay(loaderTexts[2]);
+    let elapsed = 0;
 
-    const timers = [
-      setTimeout(() => setStep(1), delay1),
-      setTimeout(() => setStep(2), delay1 + delay2),
-      setTimeout(() => setStep(3), delay1 + delay2 + delay3),
-    ];
+    const timers = loaderStages.slice(0, -1).map((stage, index) => {
+      elapsed += stage.duration + stage.pause;
 
-    const finishTimer = setTimeout(onFinish, totalTime);
+      return setTimeout(() => {
+        setActiveStage(index + 1);
+      }, elapsed);
+    });
+
+    const totalTime = loaderStages.reduce(
+      (total, stage) => total + stage.duration + stage.pause,
+      0,
+    );
+
+    const finishTimer = setTimeout(() => {
+      setShowButton(true);
+    }, totalTime);
 
     return () => {
       timers.forEach(clearTimeout);
       clearTimeout(finishTimer);
     };
-  }, [onFinish]);
+  }, []);
 
   return (
-    <div className="flex flex-col w-full h-screen bg-black justify-center text-green-400 font-mono p-6 items-center">
-      {step >= 0 && (
-        <p>
-          {line1} {step === 0 && <span>|</span>}
-        </p>
-      )}
-      {step >= 1 && (
-        <p>
-          {line2} {step === 1 && <span>|</span>}
-        </p>
-      )}
-      {step >= 2 && (
-        <p>
-          {line3} {step === 2 && <span>|</span>}
-        </p>
-      )}
-      {step >= 3 && (
-        <p>
-          {line4} {step === 3 && <span>|</span>}
-        </p>
+    <div className="flex flex-col w-full h-screen bg-black justify-center primary-text-color font-mono p-6 items-center">
+      <div className="flex flex-col w-70">
+        <div className="text-sm leading-7">
+
+          {loaderStages
+            .slice(0, activeStage + 1)
+            .map((stage, index) => (
+              <p
+                key={stage.text}
+                className={
+                  index === activeStage
+                    ? "primary-text-color"
+                    : "opacity-50"
+                }
+              >
+                <span className="opacity-50">
+                  {">"}
+                </span>{" "}
+
+                {index === activeStage
+                  ? currentText
+                  : stage.text}
+
+                {index === activeStage && (
+                  <span className="animate-pulse">
+                    |
+                  </span>
+                )}
+              </p>
+            ))}
+
+        </div>
+      </div>
+      {/* Progress */}
+      <div className="mt-6 w-50">
+        <div className="flex justify-between text-xs mb-2">
+          <span>Loading system...</span>
+          <span>{Math.floor(progress)}%</span>
+        </div>
+
+        <div className="h-2 w-full bg-green-950 border border-green-500/30">
+          <div
+            className="h-full primary-color transition-[width] duration-75"
+            style={{
+              width: `${progress}%`,
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Button */}
+      {showButton && (
+        <motion.button
+          onClick={onFinish}
+          className="
+              mt-8
+              border
+              border-[#bc13fe]
+              px-6
+              py-3
+              text-[#bc13fe]
+              hover:bg-[#bc13fe]
+              hover:text-black
+              transition-colors
+              duration-200
+            "
+          whileTap={{ scale: 0.95 }}
+        >
+          [ ENTER SYSTEM ]
+        </motion.button>
       )}
     </div>
   );
