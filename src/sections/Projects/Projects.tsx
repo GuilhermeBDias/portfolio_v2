@@ -27,12 +27,18 @@ export const Projects = () => {
       <div className="absolute inset-x-0 bottom-0 h-22 bg-linear-to-t from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
 
       <div className="flex flex-col items-center w-[85%] h-full py-10 gap-4 md:px-20 z-10">
-        <div className="flex gap-4 items-center justify-start w-full">
+        <motion.div
+          className="flex gap-4 items-center justify-start w-full"
+          variants={card}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+        >
           <div className="tertiary-color w-3 h-3" />
-          <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
+          <motion.h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
             ARCHIVED_PROJECTS
-          </h3>
-        </div>
+          </motion.h3>
+        </motion.div>
         {/* Mobile */}
         <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:hidden ">
           <AnimatePresence>
