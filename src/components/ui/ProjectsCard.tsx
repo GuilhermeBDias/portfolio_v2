@@ -39,7 +39,7 @@ export const ProjectsCard = ({
         className="flex w-full items-center justify-between border-b border-gray-900 px-6 py-3 bg-[#0b0b0b]"
       >
         <motion.div variants={itemVariants} className="flex items-center gap-2">
-          <div className="h-3 w-3 item primary-color" />
+          <div className="h-3 w-3 item primary-color animate-pulse" />
           <h2>{modulo}</h2>
         </motion.div>
 
@@ -52,6 +52,7 @@ export const ProjectsCard = ({
           variants={imageVariants}
         />
         <div className="absolute inset-0 bg-linear-to-b from-[#0b0b0b]/50 via-[#0b0b0b]/90 to-[#0b0b0b]" />
+
         <motion.div
           variants={contentVariants}
           className="flex flex-col items-center w-full z-10 gap-6"

@@ -102,7 +102,7 @@ export const Overview = () => {
                 </motion.div>
               </motion.div>
               <motion.div
-                variants={introContainer}
+                variants={leftToRight}
                 className="flex flex-col gap-6 w-full md:w-[50%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8"
               >
                 <motion.span

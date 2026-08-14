@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import type { Project } from "../../types/project";
 import { ProjectModal } from "../../components/ui/ProjectModal";
 import { createRevealVariants } from "../../utils/motionVariants";
+import { FaFolderOpen } from "react-icons/fa6";
 
 export const Projects = () => {
   const [showAll, setShowAll] = useState(false);
@@ -35,8 +36,11 @@ export const Projects = () => {
           viewport={{ once: true, amount: 0.4 }}
         >
           <div className="tertiary-color w-3 h-3" />
-          <motion.h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
+          <motion.h3 className="flex items-center justify-between w-full tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
             ARCHIVED_PROJECTS
+            <motion.span>
+              <FaFolderOpen size={20} className="hidden md:flex tertiary-text-color animate-pulse" />
+            </motion.span>
           </motion.h3>
         </motion.div>
         {/* Mobile */}

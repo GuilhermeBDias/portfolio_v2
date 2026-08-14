@@ -1,5 +1,7 @@
 import { ExperienceCard } from "../../components/ui/ExperienceCard";
 import { experiences } from "../../constants/experience_constants";
+import { MdHistory } from "react-icons/md";
+import { motion } from "motion/react";
 
 export const Experience = () => {
   return (
@@ -11,9 +13,15 @@ export const Experience = () => {
         {/* Content */}
         <div className="flex gap-4 items-center justify-start w-full">
           <div className="tertiary-color w-3 h-3" />
-          <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
+          <motion.h3 className="flex items-center justify-between w-full tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
             DATA_LOG_HISTORY
-          </h3>
+            <motion.span>
+              <MdHistory
+                size={25}
+                className="hidden md:flex tertiary-text-color animate-pulse"
+              />
+            </motion.span>
+          </motion.h3>
         </div>
         <div className="w-full flex flex-col gap-10">
           {experiences.map((experience, index) => (
@@ -33,4 +41,3 @@ export const Experience = () => {
     </section>
   );
 };
-
