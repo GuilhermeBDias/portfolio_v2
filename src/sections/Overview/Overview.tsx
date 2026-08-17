@@ -1,12 +1,17 @@
 import { BsFillLightningChargeFill } from "react-icons/bs";
+import { useTypewriter } from "../../hooks/useTypewriter";
 import { FaBuffer, FaShieldAlt } from "react-icons/fa";
 import { motion } from "motion/react";
 import {
   createRevealVariants,
   createStaggerVariants,
 } from "../../utils/motionVariants";
+import { useState } from "react";
 
 export const Overview = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [isIdentityVisible, setIsIdentityVisible] = useState(false);
+
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
 
@@ -30,6 +35,15 @@ export const Overview = () => {
     duration: 0.45,
   });
 
+  const text1 = `Structural logic prioritized over visual noise. Systems engineered for resilience, scalability, and long-term stability within the modern web environment.`;
+
+  const text2 = `Design language influenced by brutalist architecture and low-level engineering principles. Clean code is not an objective — it is the default state of every deployed system.`;
+
+  const { displayedText: typedText1, isComplete: firstTextComplete } =
+    useTypewriter(text1, 15, isIdentityVisible && isInView, 200);
+
+  const { displayedText: typedText2, isComplete: secondTextComplete } =
+    useTypewriter(text2, 15, firstTextComplete && isInView, 100);
   return (
     <>
       {/* First part of the section Overview */}
@@ -84,8 +98,9 @@ export const Overview = () => {
                     Software Developer. Creating modern digital systems.
                   </p>
                 </motion.div>
-                <motion.div variants={leftToRight} className="flex gap-4">
+                <motion.div variants={introContainer} className="flex gap-4">
                   <motion.button
+                    variants={leftToRight}
                     className="p-4 bg-linear-to-br from-[#bc13fe]/90 to-[#5C347D] text-xl font-semibold text-[#FAECFF] cursor-pointer hover:text-black/60 transition-colors"
                     onClick={() => handleClick("projects")}
                     whileTap={{ scale: 0.95 }}
@@ -93,6 +108,7 @@ export const Overview = () => {
                     View_Work
                   </motion.button>
                   <motion.button
+                    variants={leftToRight}
                     className="p-4 border border-[#00f0ff] tertiary-text-color text-xl cursor-pointer hover:bg-white/20 transition-colors"
                     onClick={() => handleClick("contact")}
                     whileTap={{ scale: 0.95 }}
@@ -103,47 +119,59 @@ export const Overview = () => {
               </motion.div>
               <motion.div
                 variants={leftToRight}
-                className="flex flex-col gap-6 w-full md:w-[50%] h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 mt-8"
+                className="flex w-full md:w-[50%]"
               >
-                <motion.span
-                  variants={metadataItem}
-                  className="tertiary-text-color text-base font-normal tracking-[0.3rem]"
+                <motion.div
+                  variants={introContainer}
+                  className="flex flex-col gap-6 w-full h-full text-sm md:text-xl second-background border-l-2 border-[#00f0ff] p-8 "
                 >
-                  SYSTEM METADATA
-                </motion.span>
-                <div className="flex flex-col md:flex-row w-full md:w-[80%] md:justify-between gap-6">
-                  <motion.div variants={metadataItem}>
-                    <span className="text-base font-light">Location</span>
+                  <motion.span
+                    variants={metadataItem}
+                    className="tertiary-text-color text-base font-normal tracking-[0.3rem]"
+                  >
+                    SYSTEM METADATA
+                  </motion.span>
+                  <div className="flex flex-col md:flex-row w-full md:w-[80%] md:justify-between gap-6">
+                    <motion.div variants={metadataItem}>
+                      <span className="text-base font-light">Location</span>
+                      <p className="text-color-2 text-lg md:text-xl">
+                        {" "}
+                        15.7801° S | 47.9292° W
+                      </p>
+                    </motion.div>
+                    <div className="flex md:flex-col gap-8">
+                      <motion.div variants={metadataItem}>
+                        <span className="text-base font-light">
+                          Core_Engine
+                        </span>
+                        <p className="text-color-2 text-lg md:text-xl">
+                          STABLE
+                        </p>
+                      </motion.div>
+                      <motion.div
+                        variants={metadataItem}
+                        className="md:hidden flex-flex-col"
+                      >
+                        <span className="text-base font-light">
+                          Years Active
+                        </span>
+                        <p className="text-color-2 text-lg md:text-xl">02+</p>
+                      </motion.div>
+                    </div>
+                  </div>
+                  <motion.div variants={metadataItem} className="md:w-[50%]">
+                    <span className="text-base font-light">Specialization</span>
                     <p className="text-color-2 text-lg md:text-xl">
-                      {" "}
-                      15.7801° S | 47.9292° W
+                      Builder of Digital Systems
                     </p>
                   </motion.div>
-                  <div className="flex md:flex-col gap-8">
-                    <motion.div variants={metadataItem}>
-                      <span className="text-base font-light">Core_Engine</span>
-                      <p className="text-color-2 text-lg md:text-xl">STABLE</p>
-                    </motion.div>
-                    <motion.div
-                      variants={metadataItem}
-                      className="md:hidden flex-flex-col"
-                    >
-                      <span className="text-base font-light">Years Active</span>
-                      <p className="text-color-2 text-lg md:text-xl">02+</p>
-                    </motion.div>
-                  </div>
-                </div>
-                <motion.div variants={metadataItem} className="md:w-[50%]">
-                  <span className="text-base font-light">Specialization</span>
-                  <p className="text-color-2 text-lg md:text-xl">
-                    Builder of Digital Systems
-                  </p>
                 </motion.div>
               </motion.div>
             </div>
           </motion.div>
         </div>
       </section>
+
       {/*Second part of the section Overview */}
       <section className="relative flex w-full min-h-screen items-center second-background">
         {/* Gradient overlays */}
@@ -156,35 +184,29 @@ export const Overview = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
+          onViewportEnter={() => setIsInView(true)}
           className="md:hidden flex flex-col items-start px-8 w-full md:w-[85%] gap-8"
         >
           <motion.div
             variants={leftToRight}
+            onAnimationComplete={() => setIsIdentityVisible(true)}
             className="flex gap-4 items-center"
           >
-            <div className="tertiary-color w-3 h-3" />
-            <h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">
+            <motion.div className="tertiary-color w-3 h-3" />
+            <motion.h3 className="tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-light">
               IDENTITY_MODULE
-            </h3>
+            </motion.h3>
           </motion.div>
-          <motion.p
-            variants={leftToRight}
-            className="text-color text-xl text-justify"
-          >
-            Structural logic prioritized over visual noise. Systems engineered
-            for resilience, scalability, and long-term stability within the
-            modern web environment.
+          <motion.p className="text-color text-xl text-justify">
+            {typedText1}
           </motion.p>
-          <motion.p
-            variants={leftToRight}
-            className="text-color-2 text-justify"
-          >
+          <motion.p className="text-color-2 text-justify">
             {" "}
-            Design language influenced by brutalist architecture and low-level
-            engineering principles. Clean code is not an objective — it is the
-            default state of every deployed system.
+            {typedText2}
           </motion.p>
           <motion.div
+            initial="hidden"
+            animate={secondTextComplete ? "show" : "hidden"}
             variants={introContainer}
             className="flex flex-col gap-2 w-full text-color-2"
           >
@@ -232,15 +254,15 @@ export const Overview = () => {
               variants={leftToRight}
               className="w-full relative flex flex-col border-l-6 border-[#bc13fe] px-8 py-6 gap-4 z-10 "
             >
-              <span className="text-[14rem] absolute -top-42 left-4 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold z-0">
+              <motion.span variants={leftToRight} className="text-[14rem] absolute -top-42 left-4 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold z-0">
                 02+
-              </span>
-              <h1 className="text-8xl max-w-54 text-white/90 font-semibold z-10">
+              </motion.span>
+              <motion.h1 variants={leftToRight} className="text-8xl max-w-54 text-white/90 font-semibold z-10">
                 Years Active
-              </h1>
-              <p className="text-color text-2xl max-w-90 z-10">
+              </motion.h1>
+              <motion.p variants={leftToRight} className="text-color text-2xl max-w-90 z-10">
                 CONTINUOUS DEPLOYMENT SINCE 2024
-              </p>
+              </motion.p>
             </motion.div>
             <motion.div
               variants={introContainer}
@@ -276,10 +298,15 @@ export const Overview = () => {
           {/* right side */}
           <motion.div
             variants={introContainer}
-            className="w-[60%] h-full flex flex-col gap-10 justify-center pl-5"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2}}
+            onAnimationComplete={() => setIsInView(true)}
+            className="w-[60%] min-h-160 flex flex-col gap-10 justify-start pl-5"
           >
             <motion.div
               variants={introContainer}
+              onAnimationComplete={() => setIsIdentityVisible(true)}
               className="flex flex-col gap-6"
             >
               <motion.div
@@ -292,35 +319,25 @@ export const Overview = () => {
                 </h3>
               </motion.div>
               <motion.div
-                variants={leftToRight}
+                variants={introContainer}
                 className="flex flex-col w-[75%]"
               >
-                <h2 className="text-7xl text-white/90 font-bold">
+                <motion.h2 variants={leftToRight} className="text-7xl text-white/90 font-bold">
                   I BUILD SOFTWARE AS IF IT WERE A{" "}
-                  <span className="text-color-2">MONUMENT</span>.
-                </h2>
+                  <motion.span variants={leftToRight} className="text-color-2">MONUMENT</motion.span>.
+                </motion.h2>
               </motion.div>
             </motion.div>
             <motion.div
               variants={introContainer}
               className="flex flex-col w-full gap-8 "
             >
-              <motion.p
-                variants={leftToRight}
-                className="text-[#eccff7]/70 text-2xl text-justify"
-              >
-                Structural logic prioritized over visual noise. Systems
-                engineered for resilience, scalability, and long-term stability
-                within the modern web environment.
+              <motion.p className="text-color text-2xl text-justify">
+                {typedText1}
               </motion.p>
-              <motion.p
-                variants={leftToRight}
-                className="text-color text-xl border-l text-justify pl-6"
-              >
+              <motion.p className="text-color-2 text-justify text-xl">
                 {" "}
-                Design language influenced by brutalist architecture and
-                low-level engineering principles. Clean code is not an objective
-                — it is the default state of every deployed system.
+                {typedText2}
               </motion.p>
             </motion.div>
           </motion.div>

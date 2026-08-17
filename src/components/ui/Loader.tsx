@@ -36,7 +36,7 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
 
   const progress = useLoaderProgress(loaderStages);
 
-  const currentText = useTypewriter(
+  const {displayedText: currentText} = useTypewriter(
     loaderStages[activeStage].text,
     loaderSpeed,
     true,
