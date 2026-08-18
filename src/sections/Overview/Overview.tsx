@@ -49,7 +49,7 @@ export const Overview = () => {
       {/* First part of the section Overview */}
       <section
         id="overview"
-        className="relative flex w-full min-h-screen items-center py-24 md:py-0"
+        className="relative flex w-full h-full md:min-h-screen items-center pt-24 pb-10 md:py-0"
       >
         {/* gradient color no topo mobile */}
         <div className="md:hidden absolute top-0 right-0 w-[60%] h-[50%] blur-2xl bg-radial-[at_110%_0%] from-[#bc13fe]/30 to-[#0b0b0b] z-0" />

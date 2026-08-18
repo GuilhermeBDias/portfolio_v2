@@ -3,7 +3,7 @@ import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 
 export const FootBar = () => {
   return (
-    <footer className="absolute right-0 flex flex-col md:flex-row md:justify-between items-center p-6 md:p-8 bg-[#0b0b0b] w-full z-30 gap-1 ">
+    <footer className="relative flex flex-col md:flex-row md:justify-between items-center p-6 md:p-8 bg-[#0b0b0b] w-full z-30 gap-1 ">
       <div className=" flex flex-col items-center md:items-start w-full gap-1">
         <h1 className="primary-text-color text-2xl md:text-3xl font-bold">
           Dias.sys

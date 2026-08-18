@@ -7,7 +7,7 @@ export const Experience = () => {
   return (
     <section
       id="experience"
-      className=" flex w-full min-h-screen items-center py-24 md:py-0  md:my-20"
+      className=" flex w-full min-h-screen items-center py-12 md:py-0  "
     >
       <div className="md:absolute md:right-0 flex flex-col w-full md:w-[85%] items-center md:justify-start px-8 md:px-20 z-10 gap-10 md:py-10">
         {/* Content */}

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Experience } from "./sections/Experience/Experience";
 import { Loader } from "./components/ui/Loader";
 import { Projects } from "./sections/Projects/Projects";
-import Contact from "./sections/Contact/Contact";
+import { Contact } from "./sections/Contact/Contact";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
