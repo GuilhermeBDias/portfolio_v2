@@ -1,4 +1,3 @@
-import { MdOutlineWifiTethering } from "react-icons/md";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 import {
   createRevealVariants,
