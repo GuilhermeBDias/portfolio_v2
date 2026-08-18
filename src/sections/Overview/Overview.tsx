@@ -21,18 +21,18 @@ export const Overview = () => {
   };
 
   const introContainer = createStaggerVariants({
-    staggerChildren: 0.18,
+    staggerChildren: 0.28,
     delayChildren: 0.22,
   });
 
   const leftToRight = createRevealVariants({
     hiddenX: -40,
-    duration: 0.45,
+    duration: 0.55,
   });
 
   const metadataItem = createRevealVariants({
     hiddenX: -22,
-    duration: 0.45,
+    duration: 0.55,
   });
 
   const text1 = `Structural logic prioritized over visual noise. Systems engineered for resilience, scalability, and long-term stability within the modern web environment.`;
@@ -243,24 +243,34 @@ export const Overview = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="hidden md:flex absolute right-0 w-[85%] px-25 h-[70%] gap-6 "
+          className="hidden md:flex items-center absolute right-0 w-[85%] px-20 h-[90%] gap-6"
         >
           {/* left side */}
           <motion.div
             variants={introContainer}
-            className="w-[40%] h-full flex flex-col gap-4 justify-center "
+            className="relative w-[40%] h-full flex flex-col gap-4 justify-center "
           >
+            <motion.div variants={leftToRight} className="absolute flex  border-l-6 border-[#bc13fe] h-[45%] top-22 " />
             <motion.div
               variants={leftToRight}
-              className="w-full relative flex flex-col border-l-6 border-[#bc13fe] px-8 py-6 gap-4 z-10 "
+              className="w-full relative flex flex-col px-8 py-6 gap-4 z-10 "
             >
-              <motion.span variants={leftToRight} className="text-[14rem] absolute -top-42 left-4 bg-linear-to-b from-[#bc13fe]/50 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold z-0">
+              <motion.span
+                variants={leftToRight}
+                className="text-[14rem] absolute -top-42 left-4 bg-linear-to-b from-[#bc13fe]/70 via-[#bc13fe]/10 to-[#131212] bg-clip-text text-transparent font-bold z-0"
+              >
                 02+
               </motion.span>
-              <motion.h1 variants={leftToRight} className="text-8xl max-w-54 text-white/90 font-semibold z-10">
+              <motion.h1
+                variants={leftToRight}
+                className="text-8xl max-w-54 text-white/90 font-semibold z-10"
+              >
                 Years Active
               </motion.h1>
-              <motion.p variants={leftToRight} className="text-color text-2xl max-w-90 z-10">
+              <motion.p
+                variants={leftToRight}
+                className="text-color text-2xl max-w-90 z-10"
+              >
                 CONTINUOUS DEPLOYMENT SINCE 2024
               </motion.p>
             </motion.div>
@@ -300,9 +310,9 @@ export const Overview = () => {
             variants={introContainer}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2}}
+            viewport={{ once: true, amount: 0.2 }}
             onAnimationComplete={() => setIsInView(true)}
-            className="w-[60%] min-h-160 flex flex-col gap-10 justify-start pl-5"
+            className="w-[60%] h-[90%] flex flex-col gap-6 justify-start pl-5 "
           >
             <motion.div
               variants={introContainer}
@@ -320,11 +330,17 @@ export const Overview = () => {
               </motion.div>
               <motion.div
                 variants={introContainer}
-                className="flex flex-col w-[75%]"
+                className="flex flex-col w-[80%]"
               >
-                <motion.h2 variants={leftToRight} className="text-7xl text-white/90 font-bold">
+                <motion.h2
+                  variants={leftToRight}
+                  className="text-7xl text-white/90 font-bold"
+                >
                   I BUILD SOFTWARE AS IF IT WERE A{" "}
-                  <motion.span variants={leftToRight} className="text-color-2">MONUMENT</motion.span>.
+                  <motion.span variants={leftToRight} className="text-color-2">
+                    MONUMENT
+                  </motion.span>
+                  .
                 </motion.h2>
               </motion.div>
             </motion.div>
