@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProjectsCard } from "../../components/ui/ProjectsCard";
 import { projects } from "../../constants/projects_constants";
 import { AnimatePresence, motion } from "motion/react";
@@ -12,6 +12,22 @@ export const Projects = () => {
   const visibleProjects = showAll ? projects : projects.slice(0, 2);
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const projectThreeRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!showAll || window.innerWidth >= 768) {
+      return;
+    }
+
+    const scrollTimer = window.setTimeout(() => {
+      projectThreeRef.current?.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+      });
+    }, 0);
+
+    return () => window.clearTimeout(scrollTimer);
+  }, [showAll]);
 
   const card = createRevealVariants({
     hiddenY: 120,
@@ -21,7 +37,7 @@ export const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative flex justify-center md:justify-end items-center w-full min-h-screen second-background"
+      className="relative flex justify-center md:justify-end items-center w-full min-h-screen second-background py-10 md:pt-0"
     >
       {/* Gradient overlays */}
       <div className="absolute inset-x-0 top-0 h-22 bg-linear-to-b from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
@@ -39,21 +55,24 @@ export const Projects = () => {
           <motion.h3 className="flex items-center justify-between w-full tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
             ARCHIVED_PROJECTS
             <motion.span>
-              <FaFolderOpen size={20} className="hidden md:flex tertiary-text-color animate-pulse" />
+              <FaFolderOpen
+                size={20}
+                className="hidden md:flex tertiary-text-color animate-pulse"
+              />
             </motion.span>
           </motion.h3>
         </motion.div>
         {/* Mobile */}
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:hidden ">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:hidden">
           <AnimatePresence>
             {visibleProjects.map((project) => (
               <motion.div
                 key={project.id}
-                layout
                 variants={card}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
+                ref={project.id === 3 ? projectThreeRef : undefined}
               >
                 <ProjectsCard
                   {...project}
@@ -63,7 +82,11 @@ export const Projects = () => {
             ))}
             <div className="flex justify-center md:hidden mt-8">
               <button
-                onClick={() => setShowAll(!showAll)}
+                type="button"
+                onClick={(event) => {
+                  event.currentTarget.blur();
+                  setShowAll((current) => !current);
+                }}
                 className="border border-[#bc13fe] px-6 py-3 uppercase w-full tracking-widest hover:bg-[#bc13fe] hover:text-black transition-colors"
               >
                 {showAll ? "SHOW LESS" : "MORE PROJECTS"}

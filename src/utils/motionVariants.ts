@@ -73,8 +73,17 @@ export const createStaggerVariants = ({
     transition: {
       staggerChildren,
       delayChildren,
+      staggerDirection: 1,
     },
   },
+
+  exit: {
+    transition: {
+      staggerChildren,
+      delayChildren,
+      staggerDirection: -1,
+    }
+  }
 });
 
 type PresenceFadeVariantsOptions = {
