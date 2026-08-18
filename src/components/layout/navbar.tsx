@@ -6,7 +6,6 @@ import {
   easeInOut,
   motion,
   stagger,
-  
   type Variants,
 } from "motion/react";
 
@@ -101,7 +100,9 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
           }
         }
       },
-      { threshold: 0.6 },
+      {
+        threshold: 0.5,
+      },
     );
     sections.forEach((section) => observer.observe(section));
 
