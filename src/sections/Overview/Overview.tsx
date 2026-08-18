@@ -252,7 +252,7 @@ export const Overview = () => {
           >
             <motion.div variants={leftToRight} className="absolute flex  border-l-6 border-[#bc13fe] h-[45%] top-22 " />
             <motion.div
-              variants={leftToRight}
+              variants={introContainer}
               className="w-full relative flex flex-col px-8 py-6 gap-4 z-10 "
             >
               <motion.span
