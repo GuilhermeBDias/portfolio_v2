@@ -1,18 +1,46 @@
 import { MdOutlineWifiTethering } from "react-icons/md";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
+import {
+  createRevealVariants,
+  createStaggerVariants,
+} from "../../utils/motionVariants";
+import { motion } from "motion/react";
+import { SignalIndicator } from "../ui/SignalIndicator";
 
 export const FootBar = () => {
+  const contentVariants = createStaggerVariants({
+    delayChildren: 0.2,
+    staggerChildren: 0.3,
+  });
+
+  const itemVariants = createRevealVariants({
+    hiddenY: 28,
+    exitY: -20,
+    duration: 0.6,
+    exitDuration: 0.35,
+  });
+  
+
   return (
-    <footer className="relative flex flex-col md:flex-row md:justify-between items-center p-6 md:p-8 bg-[#0b0b0b] w-full z-30 gap-1 ">
-      <div className=" flex flex-col items-center md:items-start w-full gap-1">
+    <motion.footer
+      variants={contentVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.4 }}
+      className="relative flex flex-col md:flex-row md:justify-between items-center p-6 md:p-8 bg-[#0b0b0b] w-full z-30 gap-1 "
+    >
+      <motion.div
+        variants={itemVariants}
+        className=" flex flex-col items-center md:items-start w-full gap-1"
+      >
         <h1 className="primary-text-color text-2xl md:text-3xl font-bold">
           Dias.sys
         </h1>
         <span className="text-sm text-color ">
           © 2026 Dias.sys. All rights reserved.
         </span>
-      </div>
-      <div className="flex justify-center items-center w-full text-lg  gap-8 text-[#00f0ff]/60 font-secondary">
+      </motion.div>
+      <motion.div variants={itemVariants} className="flex justify-center items-center w-full text-lg  gap-8 text-[#00f0ff]/60 font-secondary">
         <a
           href="https://github.com/GuilhermeBDias"
           target="_blank"
@@ -29,12 +57,11 @@ export const FootBar = () => {
           <IoLogoLinkedin />
           Linkedin
         </a>
-      </div>
-      <div className="flex justify-center items-center gap-2 text-lg md:justify-end w-full text-[#00f0ff]/60 font-secondary">
-        <MdOutlineWifiTethering size={24} className="hidden md:flex" />
-        <MdOutlineWifiTethering size={22} className="flex md:hidden" />
+      </motion.div>
+      <motion.div variants={itemVariants} className="flex justify-center items-center gap-2 text-lg md:justify-end w-full text-[#00f0ff]/60 font-secondary">
+        <SignalIndicator />
         <span>system_status: active</span>
-      </div>
-    </footer>
+      </motion.div>
+    </motion.footer>
   );
 };
