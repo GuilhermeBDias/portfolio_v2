@@ -1,6 +1,10 @@
 import { useScroll, useTransform, motion } from "motion/react";
 import { useRef } from "react";
 import type { Experience } from "../../types/experience";
+import {
+  createRevealVariants,
+  createStaggerVariants,
+} from "../../utils/motionVariants";
 
 type ExperienceCardProps = Experience;
 
@@ -21,23 +25,38 @@ export const ExperienceCard = ({
   });
 
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [0.2, 1]);
   const borderColor = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
     ["#3a3a3a", "#bc13fe", "#bc13fe"],
   );
 
+  const contentVariants = createStaggerVariants({
+    delayChildren: 0.2,
+    staggerChildren: 0.3,
+  });
+
+  const itemVariants = createRevealVariants({
+    hiddenY: 18,
+    duration: 0.6,
+  });
+
   return (
-    <article
+    <motion.article
+      variants={contentVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
       ref={ref}
-      className="relative flex gap-6  w-full md:px-10 py-6 md:bg-[#131212]"
+      className="relative flex gap-6 w-full md:px-10 py-6 md:bg-[#131212]"
     >
       {/* TIMELINE */}
-      <div className="relative flex flex-col items-center">
-        {/* square */}
+      <motion.div
+        variants={itemVariants}
+        className="relative flex flex-col items-center"
+      >
+        {/* CIRCLE */}
         <motion.div
-          style={{ opacity }}
           className="w-2 h-2 primary-color z-10 rounded-full shadow-[0px_0px_8px_3px_rgba(203,52,223,0.7)]"
         />
 
@@ -45,50 +64,54 @@ export const ExperienceCard = ({
         <div className="relative w-0.5 flex-1 bg-neutral-800 mt-2">
           {/* ANIMATED LINE */}
           <motion.div
-            style={{ height, opacity }}
+            style={{ height }}
             className="absolute top-0 left-0 w-full bg-linear-to-b from-[#00f0ff] from-30% to-[#bc13fe] to-60% origin-top"
           />
         </div>
-      </div>
+      </motion.div>
       {/* Card */}
-      <div className="flex flex-col  gap-4">
-        <motion.div className="flex flex-col md:flex-row-reverse md:justify-between gap-2">
+      <motion.div variants={contentVariants} className="flex flex-col  gap-4">
+        <motion.div variants={contentVariants} className="flex flex-col md:flex-row-reverse md:justify-between gap-2">
           <motion.span
+            variants={itemVariants}
             className="flex flex-col gap-1 tertiary-text-color text-sm md:text-xl"
-            style={{ opacity }}
           >
             {startDate && endDate
               ? `${startDate} - ${endDate}`
               : `${startDate} - Present`}
             <span className="text-base text-color">Current - Node</span>
           </motion.span>
-          <motion.h2 style={{ opacity }} className="text-base md:text-3xl flex justify-between md:flex-col gap-2 items-center md:items-start ">
+          <motion.h2
+            variants={itemVariants}
+            className="text-base md:text-3xl flex justify-between md:flex-col gap-2 items-center md:items-start "
+          >
             {title}
             <span className="text-lg hidden md:block">@{company}</span>
             <span className="text-sm md:hidden">@{mobile_company}</span>
           </motion.h2>
         </motion.div>
         <motion.p
-          style={{ opacity }}
+        variants={itemVariants}
           className="text-color-2 text-base md:text-2xl w-full md:w-[80%] text-justify"
         >
           {description}
         </motion.p>
 
-        <div>
-          <ul className="flex flex-wrap gap-2 text-sm md:text-lg">
+        <motion.div variants={contentVariants}>
+          <motion.ul className="flex flex-wrap gap-2 text-sm md:text-lg">
             {skills.map((skill, index) => (
               <motion.li
+                variants={itemVariants}
                 key={index}
                 className="border-l-3 px-4 py-1  bg-[#201e1e]"
-                style={{ borderColor, opacity }}
+                style={{ borderColor }}
               >
                 {skill}
               </motion.li>
             ))}
-          </ul>
-        </div>
-      </div>
-    </article>
+          </motion.ul>
+        </motion.div>
+      </motion.div>
+    </motion.article>
   );
 };

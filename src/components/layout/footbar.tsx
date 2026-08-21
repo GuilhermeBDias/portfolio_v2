@@ -18,6 +18,8 @@ export const FootBar = () => {
     duration: 0.6,
     exitDuration: 0.35,
   });
+
+  const year = new Date().getFullYear();
   
 
   return (
@@ -36,7 +38,7 @@ export const FootBar = () => {
           Dias.sys
         </h1>
         <span className="text-sm text-color ">
-          © 2026 Dias.sys. All rights reserved.
+          © {year} Dias.sys. All rights reserved.
         </span>
       </motion.div>
       <motion.div variants={itemVariants} className="flex justify-center items-center w-full text-lg  gap-8 text-[#00f0ff]/60 font-secondary">

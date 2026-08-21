@@ -312,7 +312,7 @@ export const Overview = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             onAnimationComplete={() => setIsInView(true)}
-            className="w-[60%] h-[90%] flex flex-col gap-6 justify-start pl-5 "
+            className="w-[60%] h-[65%] flex flex-col gap-6 justify-start pl-5 "
           >
             <motion.div
               variants={introContainer}
