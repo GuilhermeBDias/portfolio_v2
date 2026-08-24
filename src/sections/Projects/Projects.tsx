@@ -60,6 +60,7 @@ export const Projects = () => {
                 className="hidden md:flex tertiary-text-color animate-pulse"
               />
             </motion.span>
+          <p>All this projects here are just examples, they are not real.</p>
           </motion.h3>
         </motion.div>
         {/* Mobile */}

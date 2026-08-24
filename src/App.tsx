@@ -10,7 +10,7 @@ import { Contact } from "./sections/Contact/Contact";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <AnimatePresence mode="wait">

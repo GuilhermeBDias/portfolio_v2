@@ -45,6 +45,7 @@ export const FootBar = () => {
         <a
           href="https://github.com/GuilhermeBDias"
           target="_blank"
+          rel="noreferrer"
           className="flex gap-2 items-center"
         >
           <IoLogoGithub />
@@ -53,6 +54,7 @@ export const FootBar = () => {
         <a
           href="https://www.linkedin.com/in/guilherme-barbosa-dias-8532b6302/"
           target="_blank"
+          rel="noreferrer"
           className="flex gap-2 items-center"
         >
           <IoLogoLinkedin />

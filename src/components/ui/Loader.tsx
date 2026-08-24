@@ -36,7 +36,7 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
 
   const progress = useLoaderProgress(loaderStages);
 
-  const {displayedText: currentText} = useTypewriter(
+  const { displayedText: currentText } = useTypewriter(
     loaderStages[activeStage].text,
     loaderSpeed,
     true,
@@ -72,34 +72,20 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
     <div className="flex flex-col w-full h-screen bg-black justify-center primary-text-color font-mono p-6 items-center">
       <div className="flex flex-col w-70">
         <div className="text-sm leading-7">
-
-          {loaderStages
-            .slice(0, activeStage + 1)
-            .map((stage, index) => (
-              <p
-                key={stage.text}
-                className={
-                  index === activeStage
-                    ? "primary-text-color"
-                    : "opacity-50"
-                }
-              >
-                <span className="opacity-50">
-                  {">"}
-                </span>{" "}
-
-                {index === activeStage
-                  ? currentText
-                  : stage.text}
-
-                {index === activeStage && (
-                  <span className="animate-pulse">
-                    |
-                  </span>
-                )}
-              </p>
-            ))}
-
+          {loaderStages.slice(0, activeStage + 1).map((stage, index) => (
+            <p
+              key={stage.text}
+              className={
+                index === activeStage ? "primary-text-color" : "opacity-50"
+              }
+            >
+              <span className="opacity-50">{">"}</span>{" "}
+              {index === activeStage ? currentText : stage.text}
+              {index === activeStage && (
+                <span className="animate-pulse">|</span>
+              )}
+            </p>
+          ))}
         </div>
       </div>
       {/* Progress */}
@@ -121,9 +107,10 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
 
       {/* Button */}
       {showButton && (
-        <motion.button
-          onClick={onFinish}
-          className="
+        <div className="flex flex-col items-center gap-4">
+          <motion.button
+            onClick={onFinish}
+            className="
               mt-8
               border
               border-[#bc13fe]
@@ -134,11 +121,14 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
               hover:text-black
               transition-colors
               duration-200
+              w-[50%]
             "
-          whileTap={{ scale: 0.95 }}
-        >
-          [ ENTER SYSTEM ]
-        </motion.button>
+            whileTap={{ scale: 0.95 }}
+          >
+            [ ENTER SYSTEM ]
+          </motion.button>
+          <p>This portfolio is just a prototype; not all the information is true.</p>
+        </div>
       )}
     </div>
   );
