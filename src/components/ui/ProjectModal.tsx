@@ -107,7 +107,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     PROJECT: {project.title} {project.version}
                   </h1>
                   <p className="text-color-2 text-sm md:text-lg text-justify">
-                    {project.detailed_description}
+                    {project.detailedDescription}
                   </p>
                 </motion.div>
                 <motion.p variants={itemVariants}>TECH_STACK_REPORT:</motion.p>
