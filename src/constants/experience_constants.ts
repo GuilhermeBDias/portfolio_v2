@@ -4,7 +4,7 @@ export const experiences: Experience[] = [
   {
     title: "Software Engineer Intern",
     company: "Public Defender's Office",
-    mobile_company: "DPDF",
+    mobileCompany: "DPDF",
     startDate: "2025",
     endDate: "Present",
     description:
@@ -14,7 +14,7 @@ export const experiences: Experience[] = [
   {
     title: "Student Researcher",
     company: "University of Brasilia",
-    mobile_company: "UnB",
+    mobileCompany: "UnB",
     startDate: "2022",
     endDate: null,
     description:
