@@ -10,9 +10,9 @@ export interface Project {
   status: ProjectStatus;
   title: string;
   description: string;
-  detailed_description: string;
+  detailedDescription: string;
   image: string;
-  primary_stacks: string[];
+  primaryStacks: string[];
   stacks: {
     name: string;
     percentage: number;

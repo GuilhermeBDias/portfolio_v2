@@ -1,7 +1,7 @@
 export interface Experience {
   title: string;
   company: string;
-  mobile_company: string;
+  mobileCompany: string;
   startDate: string;
   endDate: string | null;
   description: string;

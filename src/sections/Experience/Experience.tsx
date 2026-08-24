@@ -60,12 +60,11 @@ export const Experience = () => {
           className="w-full flex flex-col gap-10"
         >
           {experiences.map((experience, index) => (
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} key={index}>
               <ExperienceCard
-                key={index}
                 title={experience.title}
                 company={experience.company}
-                mobile_company={experience.mobile_company}
+                mobileCompany={experience.mobileCompany}
                 startDate={experience.startDate}
                 endDate={experience.endDate}
                 description={experience.description}

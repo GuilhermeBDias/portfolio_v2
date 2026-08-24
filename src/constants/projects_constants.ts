@@ -6,12 +6,12 @@ export const projects: Project[] = [
     title: "Vortex_Engine",
     description:
       "High-performance rendering engine designed for parallel data processing and dynamic resource allocation.",
-    detailed_description:
+    detailedDescription:
       "Modular computational framework built to orchestrate asynchronous execution pipelines and adaptive workload distribution. Features scalable processing layers, low-latency synchronization, and optimized memory management. ",
     image: "/background_01.svg",
     modulo: "Módulo 1",
     status: "Concluído",
-    primary_stacks: ["React", "TypeScript"],
+    primaryStacks: ["React", "TypeScript"],
     stacks: [
       {
         name: "React",
@@ -37,12 +37,12 @@ export const projects: Project[] = [
     title: "Titan_DB",
     description:
       "Distributed data architecture focused on resilient storage, rapid indexing, and secure synchronization.",
-    detailed_description:
+    detailedDescription:
       "Scalable database infrastructure utilizing segmented storage clusters and intelligent caching mechanisms. Designed to ensure high availability, encrypted data replication, and efficient query execution under continuous workloads.",
     image: "/background_02.svg",
     modulo: "Módulo 2",
     status: "Em Andamento",
-    primary_stacks: ["Vue.js", "JavaScript"],
+    primaryStacks: ["Vue.js", "JavaScript"],
     stacks: [
       {
         name: "Vue.js",
@@ -68,12 +68,12 @@ export const projects: Project[] = [
     title: "Pulse_Net",
     description:
       "Network communication layer optimized for real-time telemetry and decentralized system monitoring.",
-    detailed_description:
+    detailedDescription:
       "Adaptive networking framework responsible for continuous event propagation, packet prioritization, and asynchronous signal processing. Integrates fault-tolerant communication protocols with low-overhead resource utilization.",
     image: "/background_03.svg",
     modulo: "Módulo 3",
     status: "Pendente",
-    primary_stacks: ["Angular", "Python"],
+    primaryStacks: ["Angular", "Python"],
     stacks: [
       {
         name: "Angular",
@@ -99,12 +99,12 @@ export const projects: Project[] = [
     title: "Shadow_OS",
     description:
       "Experimental operating environment engineered for process orchestration and intelligent resource control.",
-    detailed_description:
+    detailedDescription:
       "System-level architecture combining modular task scheduling, runtime monitoring, and secure execution layers. Provides dynamic process isolation, automated resource balancing, and integrated diagnostic interfaces for complex applications.",
     image: "/background_04.svg",
     modulo: "Módulo 4",
     status: "Em Desenvolvimento",
-    primary_stacks: ["React", "Node.js"],
+    primaryStacks: ["React", "Node.js"],
     stacks: [
       {
         name: "React",

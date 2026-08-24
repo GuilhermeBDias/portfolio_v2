@@ -16,7 +16,7 @@ export const ProjectsCard = ({
   title,
   description,
   image,
-  primary_stacks,
+  primaryStacks,
   onOpen,
 }: ProjectsCardProps) => {
   const contentVariants = createStaggerVariants({delayChildren: 0.2, staggerChildren: 0.2});
@@ -61,7 +61,7 @@ export const ProjectsCard = ({
             variants={contentVariants}
             className="absolute top-6 right-6 flex flex-col items-end gap-3"
           >
-            {primary_stacks.map((stack) => (
+            {primaryStacks.map((stack) => (
               <motion.span
                 key={stack}
                 className="bg-[#0b0b0b] px-2 py-1 border border-[#00f0ff] tertiary-text-color"

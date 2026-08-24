@@ -11,7 +11,7 @@ type ExperienceCardProps = Experience;
 export const ExperienceCard = ({
   title,
   company,
-  mobile_company,
+  mobileCompany,
   startDate,
   endDate,
   description,
@@ -87,7 +87,7 @@ export const ExperienceCard = ({
           >
             {title}
             <span className="text-lg hidden md:block">@{company}</span>
-            <span className="text-sm md:hidden">@{mobile_company}</span>
+            <span className="text-sm md:hidden">@{mobileCompany}</span>
           </motion.h2>
         </motion.div>
         <motion.p
