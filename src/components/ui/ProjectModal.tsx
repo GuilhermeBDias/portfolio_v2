@@ -1,11 +1,14 @@
 import type { Project } from "../../types/project";
 import { MdClose, MdTerminal } from "react-icons/md";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import type { Variants } from "motion/react";
 import { useProgress } from "../../hooks/useProgress";
-import { createPresenceFadeVariants, createStaggerVariants } from "../../utils/motionVariants";
+import {
+  createPresenceFadeVariants,
+  createStaggerVariants,
+} from "../../utils/motionVariants";
 
 interface ProjectModalProps {
   project: Project;
@@ -15,6 +18,51 @@ interface ProjectModalProps {
 export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const { progress, completed } = useProgress(1500);
   const [showContent, setShowContent] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusedElement = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    previousFocusedElement.current =
+      document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusableElements = document.querySelectorAll<HTMLElement>(
+        '[role="dialog"] button, [role="dialog"] a, [role="dialog"] input, [role="dialog"] textarea, [role="dialog"] select, [role="dialog"] [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (focusableElements.length === 0) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      previousFocusedElement.current?.focus();
+    };
+  }, [onClose]);
 
   useEffect(() => {
     if (!completed) {
@@ -38,7 +86,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     delayChildren: 0.6,
   });
 
-  const itemVariants: Variants = createPresenceFadeVariants({ duration: 0.8, exitDuration: 0.8 });
+  const itemVariants: Variants = createPresenceFadeVariants({
+    duration: 0.8,
+    exitDuration: 0.8,
+  });
 
   return (
     <motion.div
@@ -47,6 +98,9 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       animate="show"
       exit="exit"
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-xs px-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
       onClick={onClose}
     >
       {/* MODAL WINDOW */}
@@ -66,10 +120,12 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 size={30}
                 className="hidden md:block tertiary-text-color"
               />
-              <h1>SYSTEM_SPECIFICATION</h1>
+              <h1 id="project-modal-title">SYSTEM_SPECIFICATION</h1>
             </div>
             <button
+              ref={closeButtonRef}
               onClick={onClose}
+              aria-label="Close project details"
               className="hover:bg-white/10 transition-colors cursor-pointer rounded-full"
             >
               <MdClose size={26} />
@@ -126,7 +182,10 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <motion.button variants={itemVariants} className="p-2 bg-[#bc13fe] w-full md:w-[50%] self-center cursor-pointer hover:bg-[#bc13fe]/50 hover:text-[#0b0b0b] transition-colors">
+                <motion.button
+                  variants={itemVariants}
+                  className="p-2 bg-[#bc13fe] w-full md:w-[50%] self-center cursor-pointer hover:bg-[#bc13fe]/50 hover:text-[#0b0b0b] transition-colors"
+                >
                   ACCESS_PROJECT
                 </motion.button>
               </>
