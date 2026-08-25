@@ -1,48 +1,37 @@
 import { useEffect, useState } from "react";
 
-export const useProgress = (
-  duration = 1500,
-  max = 100,
-  start = true
-) => {
+export const useProgress = (duration = 1500, max = 100, start = true) => {
   const [progress, setProgress] = useState(0);
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) {
+      return;
+    }
 
-    const frameInterval = 16; // ~60fps
-    const increment = max / (duration / frameInterval);
+    let animationFrame: number;
+    const startTime = performance.now();
 
-    const resetTimer = window.setTimeout(() => {
-      setProgress(0);
-      setCompleted(false);
-    }, 0);
+    const updateProgress = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const percentage = Math.min(elapsed / duration, 1);
 
-    const progressTimer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment;
+      setProgress(percentage * max);
 
-        if (next >= max) {
-          clearInterval(progressTimer);
-          setCompleted(true);
-          return max;
-        }
+      if (percentage < 1) {
+        animationFrame = requestAnimationFrame(updateProgress);
+        return;
+      }
 
-        return next;
-      });
-    }, frameInterval);
-
-    const finishTimer = window.setTimeout(() => {
-      setProgress(max);
       setCompleted(true);
-      clearInterval(progressTimer);
-    }, duration);
+    };
+
+    setProgress(0);
+    setCompleted(false);
+    animationFrame = requestAnimationFrame(updateProgress);
 
     return () => {
-      clearTimeout(resetTimer);
-      clearInterval(progressTimer);
-      clearTimeout(finishTimer);
+      cancelAnimationFrame(animationFrame);
     };
   }, [duration, max, start]);
 
