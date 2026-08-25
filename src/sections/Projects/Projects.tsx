@@ -51,15 +51,17 @@ export const Projects = () => {
           viewport={{ once: true, amount: 0.4 }}
         >
           <div className="tertiary-color w-3 h-3" />
-          <motion.h3 className="flex items-center justify-between w-full tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
+          <motion.h3 className="flex flex-col gap-2 md:flex-row md:items-center justify-between w-full tertiary-text-color text-lg md:text-2xl tracking-[0.3rem] font-extralight">
             ARCHIVED_PROJECTS
+            <p className="text-sm md:text-lg w-full md:w-[50%]">
+              All this projects here are just examples, they are not real.
+            </p>
             <motion.span>
               <FaFolderOpen
                 size={20}
                 className="hidden md:flex tertiary-text-color animate-pulse"
               />
             </motion.span>
-          <p>All this projects here are just examples, they are not real.</p>
           </motion.h3>
         </motion.div>
         {/* Mobile */}
@@ -73,7 +75,9 @@ export const Projects = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
                 ref={project.id === 3 ? projectThreeRef : undefined}
-                className={!showAll && index > 1 ? "hidden md:block" : undefined}
+                className={
+                  !showAll && index > 1 ? "hidden md:block" : undefined
+                }
               >
                 <ProjectsCard
                   {...project}

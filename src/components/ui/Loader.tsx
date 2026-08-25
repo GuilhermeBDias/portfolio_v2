@@ -127,7 +127,7 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
           >
             [ ENTER SYSTEM ]
           </motion.button>
-          <p>This portfolio is just a prototype; not all the information is true.</p>
+          <p className="text-sm md:text-lg">This portfolio is just a prototype; not all the information is true.</p>
         </div>
       )}
     </div>
