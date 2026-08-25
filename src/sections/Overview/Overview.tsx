@@ -8,6 +8,21 @@ import {
 } from "../../utils/motionVariants";
 import { useState } from "react";
 
+const capabilities = [
+  {
+    label: "PERFORMANCE OPTIMIZATION",
+    icon: BsFillLightningChargeFill,
+  },
+  {
+    label: "SCALABLE ARCHITECTURE",
+    icon: FaBuffer,
+  },
+  {
+    label: "SYSTEM SECURITY",
+    icon: FaShieldAlt,
+  },
+] as const;
+
 export const Overview = () => {
   const [isInView, setIsInView] = useState(false);
   const [isIdentityVisible, setIsIdentityVisible] = useState(false);
@@ -210,30 +225,15 @@ export const Overview = () => {
             variants={introContainer}
             className="flex flex-col gap-2 w-full text-color-2"
           >
-            <motion.div
-              variants={metadataItem}
-              className="bg-gray-500/10 p-4 text-sm flex justify-between items-center"
-            >
-              PERFORMANCE OPTIMIZATION{" "}
-              <BsFillLightningChargeFill
-                className="primary-text-color"
-                size={22}
-              />
-            </motion.div>
-            <motion.div
-              variants={metadataItem}
-              className="bg-gray-500/10 p-4 text-sm flex justify-between items-center"
-            >
-              SCALABLE ARCHITECTURE{" "}
-              <FaBuffer className="primary-text-color" size={22} />
-            </motion.div>
-            <motion.div
-              variants={metadataItem}
-              className="bg-gray-500/10 p-4 text-sm flex justify-between items-center"
-            >
-              SYSTEM SECURITY{" "}
-              <FaShieldAlt className="primary-text-color" size={22} />
-            </motion.div>
+            {capabilities.map(({ label, icon: Icon }) => (
+              <motion.div
+                key={label}
+                variants={metadataItem}
+                className="bg-gray-500/10 p-4 text-sm flex justify-between items-center"
+              >
+                {label} <Icon className="primary-text-color" size={22} />
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -250,7 +250,10 @@ export const Overview = () => {
             variants={introContainer}
             className="relative w-[40%] h-full flex flex-col gap-4 justify-center "
           >
-            <motion.div variants={leftToRight} className="absolute flex  border-l-6 border-[#bc13fe] h-[45%] top-22 " />
+            <motion.div
+              variants={leftToRight}
+              className="absolute flex  border-l-6 border-[#bc13fe] h-[45%] top-22 "
+            />
             <motion.div
               variants={introContainer}
               className="w-full relative flex flex-col px-8 py-6 gap-4 z-10 "
@@ -278,30 +281,16 @@ export const Overview = () => {
               variants={introContainer}
               className=" flex flex-wrap justify-between gap-2 w-full text-color-2"
             >
-              <motion.div
-                variants={metadataItem}
-                className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center"
-              >
-                <p className="w-[60%]">PERFORMANCE OPTIMIZATION</p>
-                <BsFillLightningChargeFill
-                  size={22}
-                  className="primary-text-color"
-                />
-              </motion.div>
-              <motion.div
-                variants={metadataItem}
-                className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center"
-              >
-                <p className="w-[60%]">SCALABLE ARCHITECTURE</p>
-                <FaBuffer size={22} className="primary-text-color" />
-              </motion.div>
-              <motion.div
-                variants={metadataItem}
-                className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4  justify-between items-center"
-              >
-                <p className="w-[60%] ">SYSTEM SECURITY</p>
-                <FaShieldAlt size={22} className="primary-text-color" />
-              </motion.div>
+              {capabilities.map(({ label, icon: Icon }) => (
+                <motion.div
+                  key={label}
+                  variants={metadataItem}
+                  className="bg-gray-500/10 p-4 text-base flex w-[48%] gap-4 justify-between items-center"
+                >
+                  <p className="w-[60%]">{label}</p>
+                  <Icon size={22} className="primary-text-color" />
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
 
