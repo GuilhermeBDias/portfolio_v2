@@ -9,7 +9,6 @@ import { FaFolderOpen } from "react-icons/fa6";
 
 export const Projects = () => {
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 2);
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const projectThreeRef = useRef<HTMLDivElement | null>(null);
@@ -64,9 +63,9 @@ export const Projects = () => {
           </motion.h3>
         </motion.div>
         {/* Mobile */}
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:hidden">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           <AnimatePresence>
-            {visibleProjects.map((project) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 variants={card}
@@ -74,6 +73,7 @@ export const Projects = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
                 ref={project.id === 3 ? projectThreeRef : undefined}
+                className={!showAll && index > 1 ? "hidden md:block" : undefined}
               >
                 <ProjectsCard
                   {...project}
@@ -94,23 +94,6 @@ export const Projects = () => {
               </button>
             </div>
           </AnimatePresence>
-        </motion.div>
-        {/* Desktop */}
-        <motion.div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8 w-full ">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={card}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-            >
-              <ProjectsCard
-                {...project}
-                onOpen={() => setSelectedProject(project)}
-              />
-            </motion.div>
-          ))}
         </motion.div>
       </div>
       <AnimatePresence>
