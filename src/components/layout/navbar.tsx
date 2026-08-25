@@ -113,7 +113,8 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
     <nav className="w-full fixed top-0 left-0 bg-[#0b0b0b]/80 md:w-[15%] md:h-full  md:bg-[#0b0b0b] backdrop-blur-md  md:border-none border-[#bc13fe]/50 z-20">
       {/* side bar desktop / top bar mobile*/}
       <div className="flex md:flex-col justify-between items-start p-4 md:py-4 md:px-0 h-full">
-        <div
+        <button
+          type="button"
           className="flex justify-center items-center gap-2 cursor-pointer primary-text-color md:mt-4"
           onClick={() => handleClick("overview")}
         >
@@ -121,7 +122,7 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
           <MdTerminal size={28} className="md:hidden" />
 
           <h1 className="text-2xl md:text-4xl font-bold ">Dias.sys</h1>
-        </div>
+        </button>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex flex-col gap-8 w-full h-[80%] relative ">
