@@ -24,7 +24,7 @@ export const Experience = () => {
   return (
     <section
       id="experience"
-      className="scroll-mt-20 md:scroll-mt-0 flex w-full min-h-screen items-center py-12 md:py-0  "
+      className=" flex w-full min-h-screen items-center py-12 md:py-0  "
     >
       <motion.div
         variants={contentVariants}

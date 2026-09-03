@@ -58,7 +58,7 @@ export const Projects = () => {
     <section
       id="projects"
       ref={projectsSectionRef}
-      className="scroll-mt-20 md:scroll-mt-0 relative flex justify-center md:justify-end items-center w-full min-h-screen second-background py-10 md:pt-0"
+      className="relative flex justify-center md:justify-end items-center w-full min-h-screen second-background py-10 md:pt-0"
     >
       {/* Gradient overlays */}
       <div className="absolute inset-x-0 top-0 h-22 bg-linear-to-b from-[#0b0b0b] via-[#0f0e0e] to-transparent" />

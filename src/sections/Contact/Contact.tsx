@@ -41,7 +41,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 md:scroll-mt-0 relative flex w-full min-h-screen items-center justify-end "
+      className="relative flex w-full min-h-screen items-center justify-end "
     >
       <div className="absolute right-0 top-30 w-[35%] h-[55%] blur-3xl bg-radial-[at_100%_50%] from-[#00f0ff]/12 to-[#0b0b0b]" />
       <div className="absolute left-10 bottom-10 w-[25%] h-[35%] blur-3xl bg-radial-[at_0%_50%] from-[#bc13fe]/12 to-[#0b0b0b]" />
