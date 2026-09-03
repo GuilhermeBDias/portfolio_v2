@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTypewriter } from "../../hooks/useTypewriter";
 import { useLoaderProgress } from "../../hooks/useLoaderProgress";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
-const loaderSpeed = 40;
+const loaderSpeed = 20;
 
 const getDelay = (text: string) => text.length * loaderSpeed + 500;
 
@@ -11,17 +11,17 @@ const loaderStages = [
   {
     text: "Initializing system...",
     duration: getDelay("Initializing system..."),
-    pause: 500,
+    pause: 250,
   },
   {
     text: "Loading modules...",
     duration: getDelay("Loading modules..."),
-    pause: 329,
+    pause: 160,
   },
   {
     text: "Connecting to server...",
     duration: getDelay("Connecting to server..."),
-    pause: 420,
+    pause: 200,
   },
   {
     text: "Starting UI...",
@@ -71,13 +71,18 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
   return (
     <div className="flex flex-col w-full h-screen bg-black justify-center primary-text-color font-mono p-6 items-center">
       <div className="flex flex-col w-70">
-        <div className="text-sm leading-7">
-          {loaderStages.slice(0, activeStage + 1).map((stage, index) => (
+        <div className="h-28 text-sm leading-7">
+          {loaderStages.map((stage, index) => (
             <p
               key={stage.text}
-              className={
-                index === activeStage ? "primary-text-color" : "opacity-50"
-              }
+              aria-hidden={index > activeStage}
+              className={`h-7 whitespace-nowrap ${
+                index > activeStage
+                  ? "opacity-0"
+                  : index === activeStage
+                    ? "primary-text-color"
+                    : "opacity-50"
+              }`}
             >
               <span className="opacity-50">{">"}</span>{" "}
               {index === activeStage ? currentText : stage.text}
@@ -106,30 +111,42 @@ export const Loader = ({ onFinish }: { onFinish: () => void }) => {
       </div>
 
       {/* Button */}
-      {showButton && (
-        <div className="flex flex-col items-center gap-4">
-          <motion.button
-            onClick={onFinish}
-            className="
-              mt-8
-              border
-              border-[#bc13fe]
-              px-6
-              py-3
-              text-[#bc13fe]
-              hover:bg-[#bc13fe]
-              hover:text-black
-              transition-colors
-              duration-200
-              w-[50%]
-            "
-            whileTap={{ scale: 0.95 }}
-          >
-            [ ENTER SYSTEM ]
-          </motion.button>
-          <p className="text-sm md:text-lg">This portfolio is just a prototype; not all the information is true.</p>
-        </div>
-      )}
+      <div className="mt-8 h-32 w-full md:w-[50%] flex justify-center">
+        <AnimatePresence>
+          {showButton && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="flex flex-col items-center gap-4 w-full"
+            >
+              <motion.button
+                onClick={onFinish}
+                className="
+                  border
+                  border-[#bc13fe]
+                  px-6
+                  py-3
+                  text-[#bc13fe]
+                  hover:bg-[#bc13fe]
+                  hover:text-black
+                  transition-colors
+                  duration-200
+                  w-full
+                  md:w-[60%]
+                "
+                whileTap={{ scale: 0.95 }}
+              >
+                [ ENTER SYSTEM ]
+              </motion.button>
+              <p className="text-sm md:text-lg text-center w-full md:w-[70%]">
+                This portfolio is just a prototype; not all the information is
+                true.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
