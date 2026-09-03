@@ -8,25 +8,46 @@ import { createRevealVariants } from "../../utils/motionVariants";
 import { FaFolderOpen } from "react-icons/fa6";
 
 export const Projects = () => {
-  const [showAll, setShowAll] = useState(false);
+  const initialVisibleProjects = 2;
+  const [visibleProjects, setVisibleProjects] = useState(
+    initialVisibleProjects,
+  );
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const projectThreeRef = useRef<HTMLDivElement | null>(null);
+  const projectsSectionRef = useRef<HTMLElement | null>(null);
+  const revealedProjectRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!showAll || window.innerWidth >= 768) {
+    if (
+      visibleProjects === initialVisibleProjects ||
+      visibleProjects > projects.length ||
+      window.innerWidth >= 768
+    ) {
       return;
     }
 
     const scrollTimer = window.setTimeout(() => {
-      projectThreeRef.current?.scrollIntoView({
-        behavior: "auto",
+      revealedProjectRef.current?.scrollIntoView({
+        behavior: "smooth",
         block: "start",
       });
     }, 0);
 
     return () => window.clearTimeout(scrollTimer);
-  }, [showAll]);
+  }, [visibleProjects]);
+
+  const handleProjectsToggle = () => {
+    if (visibleProjects < projects.length) {
+      setVisibleProjects((current) => current + 1);
+      return;
+    }
+
+    setVisibleProjects(initialVisibleProjects);
+    projectsSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const card = createRevealVariants({
     hiddenY: 120,
@@ -36,6 +57,7 @@ export const Projects = () => {
   return (
     <section
       id="projects"
+      ref={projectsSectionRef}
       className="relative flex justify-center md:justify-end items-center w-full min-h-screen second-background py-10 md:pt-0"
     >
       {/* Gradient overlays */}
@@ -74,9 +96,13 @@ export const Projects = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.4 }}
-                ref={project.id === 3 ? projectThreeRef : undefined}
+                ref={
+                  project.id === visibleProjects
+                    ? revealedProjectRef
+                    : undefined
+                }
                 className={
-                  !showAll && index > 1 ? "hidden md:block" : undefined
+                  index >= visibleProjects ? "hidden md:block" : undefined
                 }
               >
                 <ProjectsCard
@@ -90,11 +116,13 @@ export const Projects = () => {
                 type="button"
                 onClick={(event) => {
                   event.currentTarget.blur();
-                  setShowAll((current) => !current);
+                  handleProjectsToggle();
                 }}
                 className="border border-[#bc13fe] px-6 py-3 uppercase w-full tracking-widest hover:bg-[#bc13fe] hover:text-black transition-colors"
               >
-                {showAll ? "SHOW LESS" : "MORE PROJECTS"}
+                {visibleProjects === projects.length
+                  ? "SHOW LESS"
+                  : "MORE PROJECTS"}
               </button>
             </div>
           </AnimatePresence>
