@@ -187,7 +187,7 @@ export const Overview = () => {
       </section>
 
       {/*Second part of the section Overview */}
-      <section className="relative flex w-full min-h-screen items-center second-background">
+      <section className="relative flex w-full items-center second-background py-20 md:min-h-screen md:py-0">
         {/* Gradient overlays */}
         <div className="absolute inset-x-0 top-0 h-22 bg-linear-to-b from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-22 bg-linear-to-t from-[#0b0b0b] via-[#0f0e0e] to-transparent" />
