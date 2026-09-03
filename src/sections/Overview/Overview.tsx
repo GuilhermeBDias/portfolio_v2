@@ -25,7 +25,6 @@ const capabilities = [
 
 export const Overview = () => {
   const [isInView, setIsInView] = useState(false);
-  const [isIdentityVisible, setIsIdentityVisible] = useState(false);
 
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
@@ -54,11 +53,11 @@ export const Overview = () => {
 
   const text2 = `Design language influenced by brutalist architecture and low-level engineering principles. Clean code is not an objective — it is the default state of every deployed system.`;
 
-  const { displayedText: typedText1, isComplete: firstTextComplete } =
-    useTypewriter(text1, 15, isIdentityVisible && isInView, 200);
-
-  const { displayedText: typedText2, isComplete: secondTextComplete } =
-    useTypewriter(text2, 15, firstTextComplete && isInView, 100);
+  const { displayedText: typedDeployment } = useTypewriter(
+    "CONTINUOUS DEPLOYMENT SINCE 2024",
+    45,
+    isInView,
+  );
   return (
     <>
       {/* First part of the section Overview */}
@@ -204,7 +203,6 @@ export const Overview = () => {
         >
           <motion.div
             variants={leftToRight}
-            onAnimationComplete={() => setIsIdentityVisible(true)}
             className="flex gap-4 items-center"
           >
             <motion.div className="tertiary-color w-3 h-3" />
@@ -212,16 +210,19 @@ export const Overview = () => {
               IDENTITY_MODULE
             </motion.h3>
           </motion.div>
-          <motion.p className="text-color text-xl text-justify">
-            {typedText1}
+          <motion.p
+            variants={leftToRight}
+            className="text-color text-xl text-justify"
+          >
+            {text1}
           </motion.p>
-          <motion.p className="text-color-2 text-justify">
-            {" "}
-            {typedText2}
+          <motion.p
+            variants={leftToRight}
+            className="text-color-2 text-justify"
+          >
+            {text2}
           </motion.p>
           <motion.div
-            initial="hidden"
-            animate={secondTextComplete ? "show" : "hidden"}
             variants={introContainer}
             className="flex flex-col gap-2 w-full text-color-2"
           >
@@ -243,7 +244,7 @@ export const Overview = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="hidden md:flex items-center absolute right-0 w-[85%] px-20 h-[90%] gap-6"
+          className="hidden md:flex items-start absolute right-0 w-[85%] px-20 h-[90%]  gap-6"
         >
           {/* left side */}
           <motion.div
@@ -256,7 +257,7 @@ export const Overview = () => {
             />
             <motion.div
               variants={introContainer}
-              className="w-full relative flex flex-col px-8 py-6 gap-4 z-10 "
+              className="w-full h-[50%] relative flex flex-col px-8 py-6 gap-4 z-10 "
             >
               <motion.span
                 variants={leftToRight}
@@ -274,7 +275,7 @@ export const Overview = () => {
                 variants={leftToRight}
                 className="text-color text-2xl max-w-90 z-10"
               >
-                CONTINUOUS DEPLOYMENT SINCE 2024
+                {typedDeployment}
               </motion.p>
             </motion.div>
             <motion.div
@@ -301,11 +302,10 @@ export const Overview = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             onAnimationComplete={() => setIsInView(true)}
-            className="w-[60%] h-[65%] flex flex-col gap-6 justify-start pl-5 "
+            className="w-[60%] h-full flex flex-col gap-6 py-4  pl-5 "
           >
             <motion.div
               variants={introContainer}
-              onAnimationComplete={() => setIsIdentityVisible(true)}
               className="flex flex-col gap-6"
             >
               <motion.div
@@ -337,12 +337,17 @@ export const Overview = () => {
               variants={introContainer}
               className="flex flex-col w-full gap-8 "
             >
-              <motion.p className="text-color text-2xl text-justify">
-                {typedText1}
+              <motion.p
+                variants={leftToRight}
+                className="text-color text-2xl text-justify"
+              >
+                {text1}
               </motion.p>
-              <motion.p className="text-color-2 text-justify text-xl">
-                {" "}
-                {typedText2}
+              <motion.p
+                variants={leftToRight}
+                className="text-color-2 text-justify text-xl"
+              >
+                {text2}
               </motion.p>
             </motion.div>
           </motion.div>
