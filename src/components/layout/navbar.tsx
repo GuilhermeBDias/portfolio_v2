@@ -100,9 +100,14 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
           }
         }
       },
-      {
-        threshold: 0.5,
-      },
+      window.innerWidth < 768
+        ? {
+            rootMargin: "-80px 0px -55% 0px",
+            threshold: 0,
+          }
+        : {
+            threshold: 0.5,
+          },
     );
     sections.forEach((section) => observer.observe(section));
 
