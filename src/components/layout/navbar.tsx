@@ -82,7 +82,41 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
+    const isMobile = window.innerWidth < 768;
+    const sections = navigation_links
+      .map((link) => document.getElementById(link.id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (isMobile) {
+      const updateActiveSection = () => {
+        const activationLine = 80;
+        const currentSection = sections.reduce<HTMLElement | null>(
+          (activeSection, section) =>
+            section.getBoundingClientRect().top <= activationLine
+              ? section
+              : activeSection,
+          null,
+        );
+        const activeLink = navigation_links.find(
+          (link) => link.id === (currentSection?.id ?? "overview"),
+        );
+
+        if (activeLink) {
+          setActive(activeLink.name);
+        }
+      };
+
+      updateActiveSection();
+      window.addEventListener("scroll", updateActiveSection, {
+        passive: true,
+      });
+      window.addEventListener("resize", updateActiveSection);
+
+      return () => {
+        window.removeEventListener("scroll", updateActiveSection);
+        window.removeEventListener("resize", updateActiveSection);
+      };
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -100,14 +134,7 @@ export const NavBar = ({ isOpen, setIsOpen }: NavBarProps) => {
           }
         }
       },
-      window.innerWidth < 768
-        ? {
-            rootMargin: "-80px 0px -55% 0px",
-            threshold: 0,
-          }
-        : {
-            threshold: 0.5,
-          },
+      { threshold: 0.5 },
     );
     sections.forEach((section) => observer.observe(section));
 
