@@ -8,9 +8,27 @@ import { Loader } from "./components/ui/Loader";
 import { Projects } from "./sections/Projects/Projects";
 import { Contact } from "./sections/Contact/Contact";
 
+const hasVisitedStorageKey = "portfolio-has-visited";
+
+const hasVisitedPortfolio = () => {
+  try {
+    return localStorage.getItem(hasVisitedStorageKey) === "true";
+  } catch {
+    return false;
+  }
+};
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => !hasVisitedPortfolio());
+
+  const finishLoading = () => {
+    try {
+      localStorage.setItem(hasVisitedStorageKey, "true");
+    } catch {}
+
+    setIsLoading(false);
+  };
 
   return (
     <MotionConfig reducedMotion="user">
@@ -27,7 +45,7 @@ function App() {
             }}
             className="fixed inset-0 z-50"
           >
-            <Loader onFinish={() => setIsLoading(false)} />
+            <Loader onFinish={finishLoading} />
           </motion.div>
         ) : (
           <motion.div
